@@ -5,7 +5,8 @@
     "check-types": "tsc --noEmit",
     "dev": "vite --host",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "fix": "npx biome check --write ."
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
