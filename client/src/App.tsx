@@ -1,18 +1,14 @@
 import "./App.css";
 import { Link, Outlet } from "react-router";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
     <>
-      <nav>
-        <Link to="/">Accueil</Link>
-        <Link to="/rockband">Rockband</Link>
-        <Link to="/discographie">Discographie</Link>
-        <Link to="/backstage">Backstage</Link>
-        <Link to="/evenements">Evènement</Link>
-        <Link to="/boutique">Boutique</Link>
-        <Link to="/contact">Contact</Link>
-      </nav>
+     
+        <Header />
+       
+      
       <main>
         <Outlet />
       </main>
