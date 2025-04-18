@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, Outlet } from "react-router";
 
 function Header() {
-  const [ouvert, setOuvert] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <nav className="2xl:fixed top-0 left-0 right-0 z-50 p-0">
@@ -11,7 +11,7 @@ function Header() {
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
           <button
             className="text-white focus:outline-none"
-            onClick={() => setOuvert(!ouvert)}
+            onClick={() => setOpen(!open)}
           >
             {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
             <svg
@@ -107,29 +107,29 @@ function Header() {
 
       <div
         className={`absolute top-14 left-0 bg-primary text-secondary font-semibold rounded-lg shadow-md p-4 flex flex-col space-y-3 md:hidden transform transition-transform duration-300 ${
-          ouvert ? "translate-x-0" : "-translate-x-full"
+          open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <Link onClick={() => setOuvert(false)} to="/rockband">
+        <Link onClick={() => setOpen(false)} to="/rockband">
           Rockband
         </Link>
 
-        <Link onClick={() => setOuvert(false)} to="/discographie">
+        <Link onClick={() => setOpen(false)} to="/discographie">
           Discographie
         </Link>
 
-        <Link onClick={() => setOuvert(false)} to="/backstage">
+        <Link onClick={() => setOpen(false)} to="/backstage">
           Backstage
         </Link>
 
-        <Link onClick={() => setOuvert(false)} to="/evenements">
+        <Link onClick={() => setOpen(false)} to="/evenements">
           Evènements
         </Link>
 
-        <Link onClick={() => setOuvert(false)} to="/boutique">
+        <Link onClick={() => setOpen(false)} to="/boutique">
           Boutique
         </Link>
-        <Link onClick={() => setOuvert(false)} to="/contact">
+        <Link onClick={() => setOpen(false)} to="/contact">
           Contact
         </Link>
       </div>
