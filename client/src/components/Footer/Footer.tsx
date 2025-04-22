@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <section className="flex flex-col items-center bg-[#4C7B74] gap-3">
+    <section className="flex flex-col items-center bg-[#4C7B74] gap-3 ">
       <div className="flex flex-col items-center mt-3">
         <h2>S'inscrire à la NewsLetter</h2>
         <form>
@@ -12,7 +12,7 @@ function Footer() {
         </form>
       </div>
 
-      <section className="p-2 flex flex-row items-center w-screen justify-between">
+      <section className="p-2 flex flex-row items-center w-full justify-between">
         <div className="flex items-center gap-2">
           <p className="text-xl">&copy;</p>
           <p className="text-sm italic">
