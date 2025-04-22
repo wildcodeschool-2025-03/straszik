@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Outlet } from "react-router";
+import { Link } from "react-router";
 
 function Header() {
   const [open, setOpen] = useState(false);

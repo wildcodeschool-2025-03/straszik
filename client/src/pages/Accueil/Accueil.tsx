@@ -1,11 +1,5 @@
-
-
 function Accueil() {
-
-  return (
-    <>
-    </>
-    
-)}
+  return <></>;
+}
 
 export default Accueil;
