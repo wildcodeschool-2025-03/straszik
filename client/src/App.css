@@ -1,7 +1,20 @@
 @import "tailwindcss";
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  background-image: url("./src/assets/images/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+}
+
+@theme {
+  --color-primary: #f4e8d4;
+  --color-secondary: #3d2a16;
+  --color-button: #e09532;
 }
