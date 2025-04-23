@@ -6,7 +6,6 @@ function Header() {
 
   return (
     <nav className="top-0 left-0 right-0 z-50 p-0">
-
       <section className="flex justify-between md:justify-center p-3">
         <div className="md:hidden">
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
@@ -111,26 +110,50 @@ function Header() {
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <Link onClick={() => setOpen(false)} to="/rockband">
+        <Link
+          onClick={() => setOpen(false)}
+          to="/rockband"
+          className="hover:text-button"
+        >
           Rockband
         </Link>
 
-        <Link onClick={() => setOpen(false)} to="/discographie">
+        <Link
+          onClick={() => setOpen(false)}
+          to="/discographie"
+          className="hover:text-button"
+        >
           Discographie
         </Link>
 
-        <Link onClick={() => setOpen(false)} to="/backstage">
+        <Link
+          onClick={() => setOpen(false)}
+          to="/backstage"
+          className="hover:text-button"
+        >
           Backstage
         </Link>
 
-        <Link onClick={() => setOpen(false)} to="/evenements">
+        <Link
+          onClick={() => setOpen(false)}
+          to="/evenements"
+          className="hover:text-button"
+        >
           Evènements
         </Link>
 
-        <Link onClick={() => setOpen(false)} to="/boutique">
+        <Link
+          onClick={() => setOpen(false)}
+          to="/boutique"
+          className="hover:text-button"
+        >
           Boutique
         </Link>
-        <Link onClick={() => setOpen(false)} to="/contact">
+        <Link
+          onClick={() => setOpen(false)}
+          to="/contact"
+          className="hover:text-button"
+        >
           Contact
         </Link>
       </div>
