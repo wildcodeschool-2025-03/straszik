@@ -12,7 +12,7 @@ function Footer() {
         </form>
       </div>
 
-      <section className="p-2 flex flex-row items-center w-full justify-between">
+      <section className="p-2 flex flex-row items-center w-screen justify-between">
         <div className="flex items-center gap-2">
           <p className="text-xl">&copy;</p>
           <p className="text-sm italic">
