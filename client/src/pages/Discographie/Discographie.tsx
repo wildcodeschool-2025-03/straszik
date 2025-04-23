@@ -23,10 +23,11 @@ interface Album {
 function Discographie() {
   const [albums, setAlbums] = useState<Album[]>([]);
   const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);
+  const apiDiscographieUrl = import.meta.env.VITE_API_DISCOGRAPHIE_URL;
 
   // Récupération des données de l'album depuis l'API
   useEffect(() => {
-    fetch("https://api-straszik.vercel.app/discographies")
+    fetch(apiDiscographieUrl)
       .then((response) => response.json())
       .then((data) => {
         setAlbums(data);
