@@ -1,5 +1,17 @@
+import GroupeImg from "../../components/GroupeImg/GroupeImg";
+import GrpPresentation from "../../components/GrpPresentation/GrpPresentation";
+import Header from "../../components/Header/Header";
+
 function Rockband() {
-  return <h1 className="h-screen">Hello from Rockband</h1>;
+  return (
+    <>
+      <section>
+        <Header />
+        <GrpPresentation />
+        <GroupeImg />
+      </section>
+    </>
+  );
 }
 
 export default Rockband;
