@@ -8,11 +8,12 @@ interface EventsInterface {
   localisation: string;
   image: string;
 }
+const apiEventsUrl = import.meta.env.VITE_API_EVENTS_URL;
 
 function Evenements() {
   const [events, setEvents] = useState<EventsInterface[]>([]);
   useEffect(() => {
-    fetch("https://api-straszik.vercel.app/events")
+    fetch(apiEventsUrl)
       .then((res) => res.json())
       .then((data) => {
         setEvents(data);
