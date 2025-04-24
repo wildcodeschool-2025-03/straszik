@@ -6,13 +6,18 @@
 }
 
 body {
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   background-image: url("./src/assets/images/background.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: white;
-  font-family: "work-sans", sans-serif;
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 @theme {
@@ -20,4 +25,9 @@ body {
   --color-secondary: #3d2a16;
   --color-button: #e09532;
   --color-block: #f0e9ce;
+}
+#fontWalter {
+  font-family: "Walter Turncoat", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
