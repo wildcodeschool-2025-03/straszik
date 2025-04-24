@@ -1,5 +1,15 @@
+import CardAccount from "../../components/CardAccount/CardAccount";
+import Header from "../../components/Header/Header";
+
 function Compte() {
-  return <h1>Hello from compte</h1>;
+  return (
+    <>
+      <div>
+        <Header />
+        <CardAccount />
+      </div>
+    </>
+  );
 }
 
 export default Compte;

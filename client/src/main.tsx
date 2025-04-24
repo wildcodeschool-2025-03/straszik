@@ -12,6 +12,7 @@ import Contact from "./pages/Contact/Contact";
 import Discographie from "./pages/Discographie/Discographie";
 import Evenements from "./pages/Evenements/Evenements";
 import Rockband from "./pages/Rockband/Rockband";
+import Compte from "./pages/Compte/Compte";
 
 // router creation
 
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/compte",
+        element: <Compte />,
       },
     ],
   },
