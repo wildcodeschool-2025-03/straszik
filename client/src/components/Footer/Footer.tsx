@@ -1,6 +1,8 @@
 function Footer() {
   return (
+
     <section className="flex flex-col items-center bg-[#4C7B74] gap-3 mt-10">
+
       <div className="flex flex-col items-center mt-3">
         <h2>S'inscrire à la NewsLetter</h2>
         <form>
