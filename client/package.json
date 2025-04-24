@@ -9,6 +9,7 @@
     "fix": "npx biome check --write ."
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@tailwindcss/vite": "^4.1.4",
     "cors": "^2.8.5",
     "react": "^19.1.0",

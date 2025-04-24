@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Header from "../../components/Header/Header";
 
 interface EventsInterface {
   id: number;
@@ -21,6 +22,7 @@ function Evenements() {
   }, []);
   return (
     <>
+      <Header />
       <h1 className="text-secondary text-4xl font-extrabold text-center lg:text-7xl mt-10">
         EVENEMENTS
         <br /> A VENIR
