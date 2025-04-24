@@ -39,7 +39,7 @@ function Contact() {
       <form
         ref={form}
         onSubmit={sendEmail}
-        className="allInput text-secondary flex flex-col items-center w-10/12 m-auto gap-6 mt-10"
+        className="allInput text-secondary flex flex-col items-center w-10/12 m-auto gap-6 mt-10 md:w-3/5 md:grid md:grid-cols-2"
       >
         <input
           name="name"
@@ -59,21 +59,27 @@ function Contact() {
           className="text-center bg-block w-full border-2 border-secondary rounded-full h-12"
         />
         <input
+          name="telephone"
+          type="tel"
+          placeholder="Téléphone"
+          className="text-center bg-block w-full border-2 border-secondary rounded-full h-12"
+        />
+        <input
           name="title"
           type="text"
           placeholder="Objet"
-          className="text-center bg-block w-full border-2 border-secondary rounded-full h-12"
+          className="text-center bg-block w-full border-2 border-secondary rounded-full h-12 md:col-span-2"
         />
         <textarea
           name="message"
           id="message"
           placeholder="Message"
-          className="text-center bg-block w-full border-2 border-secondary rounded-3xl h-50"
+          className="text-center bg-block w-full border-2 border-secondary rounded-3xl h-50 md:col-span-2"
         />
-        <p className="text-secondary font-bold ">{mailStatus}</p>
+        <p className="text-secondary font-bold">{mailStatus}</p>
         <button
           type="submit"
-          className="hover:text-white font-extrabold bg-button text-center text-xl p-2 rounded-2xl shadow-2xl"
+          className="hover:text-white font-extrabold bg-button text-center text-xl p-2 rounded-2xl shadow-2xl w-40 md:justify-self-end"
         >
           Envoyer
         </button>
@@ -85,8 +91,8 @@ function Contact() {
       <p className="text-secondary text-center m-10 font-bold">
         N’hésitez pas à nous écrire, on répond dès qu’on sort du studio !
       </p>
-      <section className="text-secondary font-bold bg-button/60 w-11/12 m-auto rounded-3xl flex flex-col gap-10 pt-10 pb-10">
-        <article className="bg-block w-10/12 m-auto rounded-3xl border-2 border-secondary p-5 text-sm flex flex-col gap-5 ">
+      <section className="text-secondary font-bold bg-button/60 w-11/12 m-auto rounded-3xl flex flex-col gap-10 pt-10 pb-10 md:flex-row md:w-10/12 md:h-1/3 md:px-10">
+        <article className="bg-block w-10/12 m-auto rounded-3xl border-2 border-secondary p-5 text-sm flex flex-col justify-around  lg:w-1/3 md:h-70 ">
           <p>Nom du groupe : Stras’Zik</p>
           <p>Style : Rock alternatif</p>
           <p>Origine : Strasbourg, France</p>
@@ -96,7 +102,7 @@ function Contact() {
             Strasbourg, France
           </p>
         </article>
-        <article className="bg-block w-10/12 m-auto rounded-3xl border-2 border-secondary p-5 text-sm flex flex-col gap-5">
+        <article className="bg-block w-10/12 m-auto rounded-3xl border-2 border-secondary p-5 text-sm flex flex-col justify-around  lg:w-1/3 md:h-70">
           <p>Nom du manager : Julien Meyer</p>
           <p>Poste : Manager du groupe Stras’Zik</p>
           <p>Téléphone : +33 7 81 23 45 67</p>
