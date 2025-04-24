@@ -17,7 +17,6 @@ body {
   font-family: "Work Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-
 }
 @theme {
   --color-primary: #f4e8d4;
@@ -29,4 +28,6 @@ body {
 #fontWalter {
   font-family: "Walter Turncoat", cursive;
   font-weight: 400;
-  font-style: normal;}
+  font-style: normal;
+}
+

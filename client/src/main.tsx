@@ -8,6 +8,7 @@ import App from "./App";
 import Accueil from "./pages/Accueil/Accueil";
 import Backstage from "./pages/Backstage/Backstage";
 import Boutique from "./pages/Boutique/Boutique";
+import Compte from "./pages/Compte/Compte";
 import Contact from "./pages/Contact/Contact";
 import Discographie from "./pages/Discographie/Discographie";
 import Evenements from "./pages/Evenements/Evenements";
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/compte",
+        element: <Compte />,
       },
     ],
   },
