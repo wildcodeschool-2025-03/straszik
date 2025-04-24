@@ -1,5 +1,13 @@
+import Header from "../../components/Header/Header";
+import LogInAccount from "../../components/LogInAccount/LogInAccount";
+
 function Log() {
-  return <h1>Hello from log;</h1>;
+  return (
+    <div>
+      <Header />
+      <LogInAccount />
+    </div>
+  );
 }
 
 export default Log;

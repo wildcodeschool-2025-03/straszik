@@ -13,6 +13,7 @@ import Contact from "./pages/Contact/Contact";
 import Discographie from "./pages/Discographie/Discographie";
 import Evenements from "./pages/Evenements/Evenements";
 import Rockband from "./pages/Rockband/Rockband";
+import Log from "./pages/Log/Log"
 
 // router creation
 
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/compte",
         element: <Compte />,
+      },
+      {
+        path: "/log-in",
+        element: <Log />,
       },
     ],
   },

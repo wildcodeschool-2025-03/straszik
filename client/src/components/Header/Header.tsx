@@ -42,7 +42,12 @@ function Header() {
         </div>
         {/*login*/}
         <div className="w-10 h-10 md:absolute md:right-5">
-          <img src="./src/assets/images/account_circle.png" alt="logo_login" />
+          <Link to="/log-in">
+            <img
+              src="./src/assets/images/account_circle.png"
+              alt="logo_login"
+            />
+          </Link>
         </div>
 
         {/* Liens desktop */}
