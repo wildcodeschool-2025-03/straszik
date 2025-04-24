@@ -12,8 +12,8 @@ import Compte from "./pages/Compte/Compte";
 import Contact from "./pages/Contact/Contact";
 import Discographie from "./pages/Discographie/Discographie";
 import Evenements from "./pages/Evenements/Evenements";
+import Log from "./pages/Log/Log";
 import Rockband from "./pages/Rockband/Rockband";
-import Log from "./pages/Log/Log"
 
 // router creation
 
