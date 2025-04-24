@@ -23,9 +23,11 @@ body {
   --color-secondary: #3d2a16;
   --color-button: #e09532;
   --color-block: #f0e9ce;
+  --color-case: #e8dba7;
 }
 #fontWalter {
   font-family: "Walter Turncoat", cursive;
   font-weight: 400;
   font-style: normal;
 }
+
