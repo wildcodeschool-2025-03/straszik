@@ -9,11 +9,14 @@ interface Goodie {
   price: number;
 }
 
+const apiGoodiesUrl = import.meta.env.VITE_API_GOODIES_URL;
+
+
 function Boutique() {
   const [goodies, setGoodies] = useState<Goodie[]>([]);
 
   useEffect(() => {
-    fetch("https://api-straszik.vercel.app/goodies")
+    fetch(apiGoodiesUrl)
       .then((res) => res.json())
       .then((data) => setGoodies(data));
   }, []);

@@ -22,11 +22,18 @@ function Footer() {
         </div>
 
         <div className="flex flex-row gap-3">
-          <img
-            className="w-7 h-7 hover:scale-120"
-            src="./src/assets/images/instagram-icon.png"
-            alt="Instagram icon"
-          />
+          <a
+            href="https://www.instagram.com/straszik_wcs/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <img
+              className="w-7 h-7 hover:scale-120"
+              src="./src/assets/images/instagram-icon.png"
+              alt="Instagram icon"
+            />
+          </a>
+
           <a
             href="https://www.facebook.com/profile.php?id=61575664886768"
             target="_blank"
