@@ -8,11 +8,11 @@ import App from "./App";
 import Accueil from "./pages/Accueil/Accueil";
 import Backstage from "./pages/Backstage/Backstage";
 import Boutique from "./pages/Boutique/Boutique";
+import Compte from "./pages/Compte/Compte";
 import Contact from "./pages/Contact/Contact";
 import Discographie from "./pages/Discographie/Discographie";
 import Evenements from "./pages/Evenements/Evenements";
 import Rockband from "./pages/Rockband/Rockband";
-import Compte from "./pages/Compte/Compte";
 
 // router creation
 

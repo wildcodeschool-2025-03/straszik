@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import {
-  FaCcVisa,
+  FaApplePay,
   FaCcMastercard,
   FaCcPaypal,
-  FaApplePay,
+  FaCcVisa,
 } from "react-icons/fa";
-import cors from "cors";
 
 interface accountInterface {
   id: number;
