@@ -11,6 +11,7 @@ interface Goodie {
 
 const apiGoodiesUrl = import.meta.env.VITE_API_GOODIES_URL;
 
+
 function Boutique() {
   const [goodies, setGoodies] = useState<Goodie[]>([]);
 
