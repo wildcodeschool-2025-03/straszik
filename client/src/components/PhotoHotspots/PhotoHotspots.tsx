@@ -25,7 +25,7 @@ export const PhotoHotspots: React.FC<PhotoHotspotsProps> = ({
     setActiveId((prev) => (prev === id ? null : id));
 
   return (
-    <div className="relative inline-block">
+    <div className="min-md:relative inline-block">
       <img
         src={imageSrc}
         alt={alt}
