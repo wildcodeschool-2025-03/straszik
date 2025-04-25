@@ -18,6 +18,7 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
 }
+
 @theme {
   --color-primary: #f4e8d4;
   --color-secondary: #3d2a16;
@@ -30,3 +31,4 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
