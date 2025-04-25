@@ -29,7 +29,7 @@ function Footer() {
           >
             <img
               className="w-7 h-7 hover:scale-120"
-              src="./src/assets/images/instagram-icon.png"
+              src="./instagram-icon.png"
               alt="Instagram icon"
             />
           </a>
@@ -40,7 +40,7 @@ function Footer() {
             rel="noreferrer noopener"
           >
             <img
-              src="./src/assets/images/facebook-icon.png"
+              src="./facebook-icon.png"
               alt="Facebook icon"
               className="w-7 h-7 hover:scale-120"
             />

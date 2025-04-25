@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
-import photogroupe from "../../assets/images/photogroupe.png";
+import photogroupe from "../../../public/photogroupe.png";
 import AlbumHome from "../../components/AlbumHome/AlbumHome";
 import DateHome from "../../components/EventsHome/EventsHome";
 import GoodiesHome from "../../components/GoodiesHome/GoodiesHome";
@@ -125,10 +125,10 @@ function Accueil() {
     <>
       <section>
         <div className="w-15 h-15 absolute right-5 mt-2">
-          <img src="./src/assets/images/account_circle.png" alt="logo_login" />
+          <img src="./account_circle.png" alt="logo_login" />
         </div>
         <div className="flex justify-center">
-          <img className="w-55" src="./src/assets/images/logo.png" alt="Logo" />
+          <img className="w-55" src="./logo.png" alt="Logo" />
         </div>
 
         <div className="md:hidden absolute top-4 left-2 z-50">
