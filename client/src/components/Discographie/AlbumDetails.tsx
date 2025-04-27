@@ -36,7 +36,7 @@ function AlbumDetails({ album }: AlbumDetailsProps) {
             <img
               src={album.image}
               alt={`Pochette de ${album.title}`}
-              className="rounded-xl w-40 h-40 mt-2 object-cover"
+              className="rounded-xl w-32 h-32 mt-2 object-cover"
             />
           </div>
           <div className="mt-10">

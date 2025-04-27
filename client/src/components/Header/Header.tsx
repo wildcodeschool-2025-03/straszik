@@ -55,19 +55,19 @@ function Header() {
           <div className="hidden md:flex flex-col gap-5 text-secondary text-right">
             <Link
               to="/rockband"
-              className="hover:text-white font-extrabold  transition bg-button text-center text-xl p-2 rounded-lg shadow-2xl "
+              className="hover:text-white font-extrabold  transition bg-button text-center text-base p-1 rounded-lg shadow-2xl w-36 "
             >
               RockBand
             </Link>
             <Link
               to="/discographie"
-              className="hover:text-white font-extrabold  transition bg-button text-center text-xl p-2 rounded-lg shadow-2xl -translate-x-5 "
+              className="hover:text-white font-extrabold  transition bg-button text-center text-base p-1 rounded-lg shadow-2xl -translate-x-5 w-36"
             >
               Discographie
             </Link>
             <Link
               to="/backstage"
-              className="hover:text-white font-extrabold  transition bg-button text-center text-xl p-2 rounded-lg shadow-2xl "
+              className="hover:text-white font-extrabold  transition bg-button text-center text-base p-1 rounded-lg shadow-2xl w-36"
             >
               Backstage
             </Link>
@@ -77,7 +77,7 @@ function Header() {
             <Link to="/">
               <img
                 src="./src/assets/images/logo.png"
-                className="w-60"
+                className="w-45"
                 alt="Stras'Zik logo"
               />
             </Link>
@@ -86,19 +86,19 @@ function Header() {
           <div className="hidden md:flex flex-col gap-5 text-secondary">
             <Link
               to="/evenements"
-              className="hover:text-white font-extrabold  transition bg-button text-center text-xl p-2 rounded-lg shadow-2xl w-36"
+              className="hover:text-white font-extrabold  transition bg-button text-center text-base p-1 rounded-lg shadow-2xl w-36"
             >
               Evenements
             </Link>
             <Link
               to="/boutique"
-              className="hover:text-white font-extrabold  transition bg-button text-center text-xl p-2 rounded-lg shadow-2xl translate-x-5 w-36"
+              className="hover:text-white font-extrabold  transition bg-button text-center text-base p-1 rounded-lg shadow-2xl translate-x-5 w-36"
             >
               Boutique
             </Link>
             <Link
               to="/contact"
-              className="hover:text-white font-extrabold  transition bg-button text-center text-xl p-2 rounded-lg shadow-2xl w-36"
+              className="hover:text-white font-extrabold  transition bg-button text-center text-base p-1 rounded-lg shadow-2xl w-36"
             >
               Contact
             </Link>

@@ -1,6 +1,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useState } from "react";
 
 // Interface pour typer les données de l'Album
 interface Track {
@@ -45,20 +46,35 @@ function AlbumPochette({ albums, onAlbumClick }: AlbumPochetteProps) {
     ],
   };
 
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+
   return (
     <div className="relative px-8">
       <Slider {...settings}>
-        {albums.map((album) => (
-          <div key={album.id} className="flex justify-center items-center p-5">
-            {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+        {albums.map((album, idx) => (
+          <div
+            key={album.id}
+            className="grid grid-rows-1 justify-items-center p-5 cursor-pointer"
+          >
             <div
-              className="flex justify-center items-center cursor-pointer"
-              onClick={() => onAlbumClick(album)}
+              key={album.id}
+              onClick={() => {
+                onAlbumClick(album);
+                setActiveIndex(idx);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  onAlbumClick(album);
+                  setActiveIndex(idx);
+                }
+              }}
+              className={`relative transform transition-transform duration-300
+              ${activeIndex === idx ? "scale-120" : "hover:scale-120 md:hover:scale-110"}`}
             >
               <img
                 src={album.image}
                 alt={`Pochette de ${album.title}`}
-                className="object-contain w-50 h-50 "
+                className="object-contain w-32 h-32 md:w-40 md:h-40"
               />
             </div>
           </div>

@@ -41,17 +41,17 @@ function Backstage() {
   return (
     <>
       <Header />
-      <h1 className="text-secondary text-4xl font-extrabold text-center lg:text-7xl mt-10">
+      <h1 className="text-secondary text-4xl font-extrabold text-center lg:text-5xl mt-10">
         BACKSTAGE
       </h1>
-      <p className="text-lg text-center mt-5 text-secondary font-bold">
+      <p className="text-xl text-center my-5 text-secondary font-bold">
         "Entrez dans notre univers, loin des projecteurs..."
       </p>
 
       {/* La section "Dans les coulisses de Stras'Zik" avec des images */}
       <section className="flex justify-center">
-        <section className="bg-button/60 rounded-md mt-10 text-secondary p-6 mx-6 w-5/6">
-          <h2 className="text-2xl text-center font-semibold my-10">
+        <section className="bg-button/60 rounded-md mt-10 text-secondary p-6 mx-6 w-5/7 mb-5">
+          <h2 className="text-xl text-center font-semibold my-5">
             Dans les coulisses de Stras'Zik
           </h2>
 
@@ -133,8 +133,8 @@ function Backstage() {
 
       {/* La section "Set-up du groupe" avec les instruments et anecdotes */}
       <section className="flex justify-center">
-        <section className="bg-button/60 rounded-md mt-10 text-secondary p-6 mx-6 w-5/6">
-          <h2 className="text-2xl text-center font-semibold p-8">
+        <section className="bg-button/60 rounded-md mt-10 text-secondary p-6 mx-6 w-5/7">
+          <h2 className="text-xl text-center font-semibold mb-10 mt-5">
             Set-up du groupe
           </h2>
 
