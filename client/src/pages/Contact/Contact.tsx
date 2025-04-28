@@ -100,7 +100,7 @@ function Contact() {
               className="max-w-[160px] object-contain md:max-w-[260px] rounded-lg mx-auto"
             />
             <figcaption className="absolute bottom-0 w-full bg-black/50 text-white text-center text-sm font-semibold py-2 px-3">
-              STRAS’ZIK — Rock alternatif, Strasbourg
+              STRAS’ZIK — Rock alternatif
             </figcaption>
           </figure>
           <div className="ml-2 md:ml-5 text-left font-semibold">
@@ -121,8 +121,7 @@ function Contact() {
               className="max-w-[160px] object-contain md:max-w-[260px] rounded-lg mx-auto"
             />
             <figcaption className="absolute bottom-0 w-full bg-black/50 text-white text-center text-sm font-semibold py-2 px-3">
-              Yavuz KUTUK — Manager, <br />
-              Strasbourg
+              Yavuz KUTUK — Manager
             </figcaption>
           </figure>
           <div className="ml-2 md:ml-5 text-left font-semibold">
