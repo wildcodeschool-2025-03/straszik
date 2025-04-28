@@ -33,20 +33,13 @@ function Header() {
         {/* Logo */}
         <div className="md:hidden mx-auto">
           <Link to="/">
-            <img
-              src="./src/assets/images/logo.png"
-              className="w-40"
-              alt="Stras'Zik logo"
-            />
+            <img src="./logo.png" className="w-40" alt="Stras'Zik logo" />
           </Link>
         </div>
         {/*login*/}
         <div className="w-10 h-10 md:absolute md:right-5">
           <Link to="/log-in">
-            <img
-              src="./src/assets/images/account_circle.png"
-              alt="logo_login"
-            />
+            <img src="./account_circle.png" alt="logo_login" />
           </Link>
         </div>
 
@@ -75,11 +68,7 @@ function Header() {
 
           <div className="hidden md:flex">
             <Link to="/">
-              <img
-                src="./src/assets/images/logo.png"
-                className="w-60"
-                alt="Stras'Zik logo"
-              />
+              <img src="./logo.png" className="w-60" alt="Stras'Zik logo" />
             </Link>
           </div>
 
