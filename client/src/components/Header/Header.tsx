@@ -36,11 +36,7 @@ function Header() {
         {/* Logo */}
         <div className="md:hidden mx-auto">
           <Link to="/">
-            <img
-              src="./src/assets/images/logo.png"
-              className="w-40"
-              alt="Stras'Zik logo"
-            />
+            <img src="./logo.png" className="w-40" alt="Stras'Zik logo" />
           </Link>
         </div>
         {/*login*/}

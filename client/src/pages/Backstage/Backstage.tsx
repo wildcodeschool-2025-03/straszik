@@ -62,7 +62,7 @@ function Backstage() {
                   Dans les loges
                 </figcaption>
                 <ZoomImage
-                  src="./public/loge-maquillage.png"
+                  src="./loge-maquillage.png"
                   alt="Straz'Zik en loge"
                   className="w-full max-w-[300px] md:max-w-[400px]"
                 />
@@ -72,7 +72,7 @@ function Backstage() {
                   Bloc-notes
                 </figcaption>
                 <ZoomImage
-                  src="./public/carnet-notes.png"
+                  src="./carnet-notes.png"
                   alt="Extrait d'un carnet de notes"
                   className="w-full max-w-[300px] md:max-w-[400px]"
                 />
@@ -85,7 +85,7 @@ function Backstage() {
                   En tournée
                 </figcaption>
                 <ZoomImage
-                  src="./public/scene.png"
+                  src="./scene.png"
                   alt="Straz'Zik sur scène"
                   className="w-full max-w-[300px] md:max-w-[400px]"
                 />
@@ -98,7 +98,7 @@ function Backstage() {
                   En studio
                 </figcaption>
                 <ZoomImage
-                  src="./public/studio.png"
+                  src="./studio.png"
                   alt="Straz'Zik en studio"
                   className="w-full max-w-[300px] md:max-w-[400px]"
                 />
@@ -110,7 +110,7 @@ function Backstage() {
                     Sur la route
                   </figcaption>
                   <ZoomImage
-                    src="./public/route.png"
+                    src="./route.png"
                     alt="Straz'Zik dans son van"
                     className="w-full max-w-[300px] md:max-w-[400px]"
                   />
@@ -120,7 +120,7 @@ function Backstage() {
                     En dédicace
                   </figcaption>
                   <ZoomImage
-                    src="./public/dedicace.png"
+                    src="./dedicace.png"
                     alt="Straz'Zik en séance de dédicace"
                     className="w-full max-w-[300px] md:max-w-[400px]"
                   />
