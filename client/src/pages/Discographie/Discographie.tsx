@@ -50,11 +50,11 @@ function Discographie() {
   return (
     <>
       <Header />
-      <h1 className="text-secondary text-4xl font-extrabold text-center lg:text-7xl mt-10">
+      <h1 className="text-secondary text-4xl font-extrabold text-center lg:text-5xl mt-10">
         DISCOGRAPHIE
       </h1>
       <section className="bg-button ">
-        <h2 className="font-bold mt-20 ml-5 p-2 text-2xl">Albums</h2>
+        <h2 className="font-bold mt-15 ml-5 p-2 text-xl">Albums</h2>
         <AlbumPochette albums={albums} onAlbumClick={handleAlbumSelect} />
       </section>
       {selectedAlbum && <AlbumDetails album={selectedAlbum} />}
