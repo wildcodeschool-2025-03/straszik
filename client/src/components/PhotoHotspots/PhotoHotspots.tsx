@@ -37,7 +37,7 @@ export const PhotoHotspots: React.FC<PhotoHotspotsProps> = ({
           key={hs.id}
           type="button"
           className={`
-        max-sm:hidden
+        max-md:hidden
         absolute
         transform -translate-x-1/2 -translate-y-1/2
         text-2xl 

@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router";
 
 function Header() {
+  const userConnected = JSON.parse(
+    localStorage.getItem("userConnected") || "{}",
+  );
   const [open, setOpen] = useState(false);
 
   return (
@@ -37,9 +40,21 @@ function Header() {
           </Link>
         </div>
         {/*login*/}
-        <div className="w-10 h-10 md:absolute md:right-5">
-          <Link to="/log-in">
-            <img src="./account_circle.png" alt="logo_login" />
+        <div className="absolute right-3 min-md:right-1">
+          <Link
+            to={Object.keys(userConnected).length === 0 ? "/log-in" : "/compte"}
+            className="flex flex-col items-end md:items-center md:flex-row"
+          >
+            {Object.keys(userConnected).length === 0 ? null : (
+              <p className="text-secondary font-semibold lg:text-sm mr-1 min-md:mr-2 text-xs">
+                Bonjour {userConnected.firstName}
+              </p>
+            )}
+            <img
+              src="./src/assets/images/account_circle.png"
+              alt="logo_login"
+              className="w-10 h-10"
+            />
           </Link>
         </div>
 
