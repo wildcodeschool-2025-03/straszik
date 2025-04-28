@@ -37,7 +37,9 @@ function SignIn() {
       user.id = idCount;
       userList.push(user);
       localStorage.setItem("userList", JSON.stringify(userList));
-
+      //recupérer l'objet dans le local storage avec son id
+      const userConnected = userList.find((u) => u.id === idCount);
+      localStorage.setItem("userConnected", JSON.stringify(userConnected));
       window.location.href = "./compte";
     } else {
       alert(
