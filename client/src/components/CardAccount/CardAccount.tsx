@@ -28,7 +28,7 @@ function CardAccount() {
   return (
     <>
       <section className="mb-12">
-        <h1 className="text-secondary text-4xl font-extrabold text-center lg:text-7xl mt-10 mb-14">
+        <h1 className="text-secondary text-4xl font-extrabold text-center lg:text-5xl mt-10 mb-14">
           MON COMPTE
         </h1>
       </section>

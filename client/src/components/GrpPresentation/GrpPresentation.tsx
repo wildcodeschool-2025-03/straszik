@@ -6,7 +6,7 @@ function GrpPresentation() {
       </h1>
 
       <div className=" lg:flex lg:items-center lg:justify-center lg:flex-col lg:mt-8">
-        <section className="bg-block rounded-4xl text-secondary border-secondary border-4 text-center mb-2 ml-3 mr-3 lg:w-250">
+        <section className="bg-block rounded-4xl text-secondary border-secondary border-4 text-center mx-5 lg:w-250">
           <h2 className="font-bold mt-6 text-xl">Qui sommes nous ?</h2>
           <div className="text-sm leading-relaxed tracking-wide mt-6 mb-8 lg:px-20 lg:tracking-widest lg:leading-loose p-2 lg:p-0">
             <p className="mb-4">
