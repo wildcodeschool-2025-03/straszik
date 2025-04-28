@@ -14,6 +14,7 @@ import Discographie from "./pages/Discographie/Discographie";
 import Evenements from "./pages/Evenements/Evenements";
 import Log from "./pages/Log/Log";
 import Rockband from "./pages/Rockband/Rockband";
+import Sign from "./pages/Sign/Sign";
 
 // router creation
 
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "/log-in",
         element: <Log />,
+      },
+      {
+        path: "/sign-in",
+        element: <Sign />,
       },
     ],
   },

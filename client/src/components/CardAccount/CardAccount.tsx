@@ -34,22 +34,27 @@ function CardAccount() {
       </section>
       <section className="lg:grid lg:grid-col-2 lg:grid-rows-[70px_70px_70px_70px] flex flex-col items-center gap-4 lg:gap-4 lg:mx-50">
         <input
-          className="bg-block text-secondary rounded-xl  text-center lg:h-full border-3 border-secondary lg:rounded-xl lg:text-2xl "
-          type="text"
-          placeholder="Email"
-        />
-        <input
-          className="bg-block text-secondary rounded-xl  text-center lg:h-full border-3 border-secondary lg:col-start-1 lg:rounded-xl lg:text-2xl"
+          className="bg-block text-secondary rounded-xl text-center lg:h-full border-3 border-secondary lg:col-start-1 lg:rounded-xl lg:text-2xl"
           type="text"
           placeholder="Nom"
         />
         <input
-          className="bg-block text-secondary rounded-xl  text-center lg:h-full border-3 border-secondary lg:col-start-1 lg:row-start-3 lg:rounded-xl lg:text-2xl"
+          className="bg-block text-secondary rounded-xl text-center lg:h-full border-3 border-secondary lg:col-start-1 lg:row-start-3 lg:rounded-xl lg:text-2xl"
           type="text"
           placeholder="Prénom"
         />
         <input
-          className="bg-block text-secondary rounded-xl  text-center lg:h-full h-24 border-3 border-secondary lg:col-start-1 lg:row-end-5 lg:col-span-2 lg:text-2xl"
+          className="bg-block text-secondary rounded-xl text-center lg:h-full border-3 border-secondary lg:col-start-1 lg:row-start-3 lg:rounded-xl lg:text-2xl"
+          type="text"
+          placeholder="Portable"
+        />
+        <input
+          className="bg-block text-secondary rounded-xl text-center lg:h-full border-3 border-secondary lg:rounded-xl lg:text-2xl "
+          type="text"
+          placeholder="Email"
+        />
+        <input
+          className="bg-block text-secondary rounded-xl text-center lg:h-full h-24 border-3 border-secondary lg:col-start-1 lg:row-end-5 lg:col-span-2 lg:text-2xl"
           type="text"
           placeholder="Adresse"
         />
