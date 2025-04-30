@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { MdAccountCircle } from "react-icons/md";
+import { PiBasketBold } from "react-icons/pi";
 import { Link } from "react-router";
 
 function Header() {
@@ -9,29 +11,27 @@ function Header() {
 
   return (
     <nav className="top-0 left-0 right-0 z-50 p-0">
-      <section className="flex justify-between md:justify-center p-3">
-        <div className="md:hidden">
-          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button
-            className="text-white focus:outline-none"
-            onClick={() => setOpen(!open)}
+      <section className="flex md:justify-center p-3">
+        {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+        <button
+          className="text-white focus:outline-none md:hidden absolute left"
+          onClick={() => setOpen(!open)}
+        >
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
+          <svg
+            className="w-10 h-10"
+            fill="black"
+            stroke="black"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
           >
-            {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
-            <svg
-              className="w-10 h-10"
-              fill="black"
-              stroke="black"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
 
         {/* Logo */}
         <div className="md:hidden mx-auto">
@@ -40,22 +40,30 @@ function Header() {
           </Link>
         </div>
         {/*login*/}
+
         <div className="absolute right-3 min-md:right-1">
-          <Link
-            to={Object.keys(userConnected).length === 0 ? "/log-in" : "/compte"}
-            className="flex flex-col items-end md:items-center md:flex-row"
-          >
-            {Object.keys(userConnected).length === 0 ? null : (
-              <p className="text-secondary font-semibold lg:text-sm mr-1 min-md:mr-2 text-xs">
-                Bonjour {userConnected.firstName}
-              </p>
-            )}
-            <img
-              src="./src/assets/images/account_circle.png"
-              alt="logo_login"
-              className="w-10 h-10"
-            />
-          </Link>
+          {Object.keys(userConnected).length === 0 ? null : (
+            <p className="text-secondary font-semibold lg:text-sm mr-1 min-md:mr-2 text-xs">
+              Bonjour {userConnected.firstName}
+            </p>
+          )}
+          <div className="flex items-center flex-row-reverse">
+            <Link
+              to={
+                Object.keys(userConnected).length === 0 ? "/log-in" : "/compte"
+              }
+              className="flex justify-end md:items-center md:flex-row"
+            >
+              <div className="text-black text-4xl p-1 ">
+                <MdAccountCircle />
+              </div>
+            </Link>
+            <Link to="/panier">
+              <div className="text-black text-xl p-1 border-2 rounded-full ">
+                <PiBasketBold />
+              </div>
+            </Link>
+          </div>
         </div>
 
         {/* Liens desktop */}
@@ -83,11 +91,7 @@ function Header() {
 
           <div className="hidden md:flex">
             <Link to="/">
-              <img
-                src="./src/assets/images/logo.png"
-                className="w-40"
-                alt="Stras'Zik logo"
-              />
+              <img src="./logo.png" className="w-40" alt="Stras'Zik logo" />
             </Link>
           </div>
 

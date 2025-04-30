@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useBasket } from "../../Context/BasketContext";
 import Header from "../../components/Header/Header";
 
 interface Goodie {
@@ -13,12 +14,25 @@ const apiGoodiesUrl = import.meta.env.VITE_API_GOODIES_URL;
 
 function Boutique() {
   const [goodies, setGoodies] = useState<Goodie[]>([]);
+  const { basket, setBasket } = useBasket();
 
   useEffect(() => {
     fetch(apiGoodiesUrl)
       .then((res) => res.json())
       .then((data) => setGoodies(data));
   }, []);
+
+  const handleBasket = (product: Goodie) => {
+    const item = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      description: product.description,
+      quantity: 1,
+    };
+    setBasket([...basket, item]);
+  };
 
   return (
     <>
@@ -56,6 +70,8 @@ function Boutique() {
                   <button
                     type="button"
                     className="bg-button p-2.5 px-4 rounded-full mb-3 mt-3 border-secondary border-3 font-semibold"
+                    id={String(products.id)}
+                    onClick={() => handleBasket(products)}
                   >
                     Ajouter au panier
                   </button>

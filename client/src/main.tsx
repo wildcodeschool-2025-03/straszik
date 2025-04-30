@@ -7,6 +7,7 @@ import App from "./App";
 
 import Accueil from "./pages/Accueil/Accueil";
 import Backstage from "./pages/Backstage/Backstage";
+import Basket from "./pages/Basket/Basket.tsx";
 import Boutique from "./pages/Boutique/Boutique";
 import Compte from "./pages/Compte/Compte";
 import Contact from "./pages/Contact/Contact";
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/boutique",
         element: <Boutique />,
+      },
+      {
+        path: "/panier",
+        element: <Basket />,
       },
       {
         path: "/contact",

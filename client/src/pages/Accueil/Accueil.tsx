@@ -142,7 +142,7 @@ function Accueil() {
                 </p>
               )}
               <img
-                src="./src/assets/images/account_circle.png"
+                src="./account_circle.png"
                 alt="logo_login"
                 className="w-10 h-10"
               />
