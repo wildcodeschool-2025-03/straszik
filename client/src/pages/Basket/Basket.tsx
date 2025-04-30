@@ -28,7 +28,7 @@ function Basket() {
 
   function handleRemoveItem(id: number) {
     //const id= (e.target as HTMLElement).id;
-    console.log(id);
+    // console.log(id);
     const newUniqueProducts = uniqueProducts.filter(
       (product) => product.id !== id,
     );
