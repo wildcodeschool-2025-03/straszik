@@ -45,7 +45,7 @@ function Basket() {
     );
   });
 
-  function handleCommande(e: React.MouseEvent<HTMLButtonElement>) {
+  function handleOrder(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     localStorage.setItem("newOrder", JSON.stringify(basket));
     const checkboxCGV = document.getElementById(
@@ -150,7 +150,7 @@ function Basket() {
         <button
           type="submit"
           className="bg-button px-4 rounded-full mb-3 mt-3 border-secondary border-3 font-semibold text-sm md:text-base"
-          onClick={handleCommande}
+          onClick={handleOrder}
         >
           Valider la commande
         </button>
