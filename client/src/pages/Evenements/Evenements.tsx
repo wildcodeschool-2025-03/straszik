@@ -34,12 +34,12 @@ function Evenements() {
         {events.map((event) => (
           <article
             key={event.id}
-            className="eventCard flex flex-col bg-block border-secondary border-4 rounded-lg p-4 gap-4 w-[200px] md:flex-col"
+            className="eventCard flex flex-col bg-block border-secondary border-4 rounded-lg p-4 gap-4 w-[180px] min-h-[350px] md:flex-col"
           >
             <img
               src={event.image}
               alt={`Affiche : ${event.name}`}
-              className="mx-auto w-full object-cover md:max-w-[200px] rounded-lg"
+              className="mx-auto w-full object-cover rounded-lg"
             />
             <hr className="my-2 mx-2" />
             <div className="flex flex-col gap-2 font-semibold">

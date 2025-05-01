@@ -22,10 +22,10 @@ function InstrumentCard({ src, alt, name, anecdote }: InstrumentCardProps) {
             <p className="mt-2 text-xs font-semibold">{anecdote}</p>
           </div>
         </div>
-        <figcaption className="text-lg font-bold opacity-80 mt-5 text-center">
+        <figcaption className="text-base font-bold opacity-80 mt-5 text-center">
           {name}
         </figcaption>
-        <p className="mt-2 opacity-80 font-semibold md:hidden">
+        <p className="mt-2 opacity-80 text-xs font-semibold md:hidden">
           Anecdote :<p>{anecdote}</p>
         </p>
       </figure>
