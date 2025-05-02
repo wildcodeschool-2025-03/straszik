@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 // src/components/AudioPlayer/AudioPlayer.tsx
 import { useEffect, useRef, useState } from "react";
-import vinylImg from "../../assets/images/vinyle.png";
+import vinylImg from "../../../public/vinyle.png";
 
 interface Track {
   id: number;

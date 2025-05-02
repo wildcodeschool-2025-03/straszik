@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
-import photogroupe from "../../assets/images/photogroupe.png";
+import photogroupe from "../../../public/photogroupe.png";
 import AlbumHome from "../../components/AlbumHome/AlbumHome";
 import DateHome from "../../components/EventsHome/EventsHome";
 import GoodiesHome from "../../components/GoodiesHome/GoodiesHome";
@@ -92,6 +92,9 @@ function setTracks(_arg0: Track[]) {
 }
 
 function Accueil() {
+  const userConnected = JSON.parse(
+    localStorage.getItem("userConnected") || "{}",
+  );
   const [events, setEvents] = useState<EventsInterface[]>([]);
   const [albums, setAlbums] = useState<AlbumInterface[]>([]);
   const [goodies, setGoodies] = useState<GoodiesHomeInterface[]>([]);
@@ -124,11 +127,27 @@ function Accueil() {
   return (
     <>
       <section>
-        <div className="w-15 h-15 absolute right-5 mt-2">
-          <img src="./src/assets/images/account_circle.png" alt="logo_login" />
-        </div>
-        <div className="flex justify-center">
-          <img className="w-55" src="./src/assets/images/logo.png" alt="Logo" />
+        <div>
+          {/*login*/}
+          <div className="absolute right-3 min-md:right-1">
+            <Link
+              to={
+                Object.keys(userConnected).length === 0 ? "/log-in" : "/compte"
+              }
+              className="flex flex-col items-end md:items-center md:flex-row"
+            >
+              {Object.keys(userConnected).length === 0 ? null : (
+                <p className="text-secondary font-semibold lg:text-sm mr-1 min-md:mr-2 text-xs">
+                  Bonjour {userConnected.firstName}
+                </p>
+              )}
+              <img
+                src="./account_circle.png"
+                alt="logo_login"
+                className="w-10 h-10"
+              />
+            </Link>
+          </div>
         </div>
 
         <div className="md:hidden absolute top-4 left-2 z-50">
@@ -207,8 +226,8 @@ function Accueil() {
         </Link>
       </div>
 
-      <div className="flex justify-center">
-        <section className="flex items-center md:mx-10">
+      <div className="flex justify-center ">
+        <section className="flex items-center md:mx-10 mt-20">
           <div className="hidden md:flex flex-col gap-10 text-secondary text-right mr-5">
             <Link
               to="/rockband"

@@ -8,7 +8,7 @@ body {
   font-family: "Work Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  background-image: url("./src/assets/images/background.png");
+  background-image: url("./background.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -23,7 +23,7 @@ body {
   --color-primary: #f4e8d4;
   --color-secondary: #3d2a16;
   --color-button: #e09532;
-  --color-block: #f0e9ce;
+  --color-block: #fffbf3;
   --color-case: #e8dba7;
 }
 #fontWalter {

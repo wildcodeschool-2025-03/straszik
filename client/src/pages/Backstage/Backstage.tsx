@@ -41,17 +41,17 @@ function Backstage() {
   return (
     <>
       <Header />
-      <h1 className="text-secondary text-4xl font-extrabold text-center lg:text-7xl mt-10">
+      <h1 className="text-secondary text-4xl font-extrabold text-center lg:text-5xl mt-10">
         BACKSTAGE
       </h1>
-      <p className="text-lg text-center mt-5 text-secondary font-bold">
+      <p className="text-xl text-center my-5 text-secondary font-bold">
         "Entrez dans notre univers, loin des projecteurs..."
       </p>
 
       {/* La section "Dans les coulisses de Stras'Zik" avec des images */}
       <section className="flex justify-center">
-        <section className="bg-button/60 rounded-md mt-10 text-secondary p-6 mx-6 w-5/6">
-          <h2 className="text-2xl text-center font-semibold my-10">
+        <section className="bg-button/60 rounded-md mt-10 text-secondary p-6 mx-6 w-5/7 mb-5">
+          <h2 className="text-xl text-center font-semibold my-5">
             Dans les coulisses de Stras'Zik
           </h2>
 
@@ -62,7 +62,7 @@ function Backstage() {
                   Dans les loges
                 </figcaption>
                 <ZoomImage
-                  src="./public/loge-maquillage.png"
+                  src="./loge-maquillage.png"
                   alt="Straz'Zik en loge"
                   className="w-full max-w-[300px] md:max-w-[400px]"
                 />
@@ -72,7 +72,7 @@ function Backstage() {
                   Bloc-notes
                 </figcaption>
                 <ZoomImage
-                  src="./public/carnet-notes.png"
+                  src="./carnet-notes.png"
                   alt="Extrait d'un carnet de notes"
                   className="w-full max-w-[300px] md:max-w-[400px]"
                 />
@@ -85,7 +85,7 @@ function Backstage() {
                   En tournée
                 </figcaption>
                 <ZoomImage
-                  src="./public/scene.png"
+                  src="./scene.png"
                   alt="Straz'Zik sur scène"
                   className="w-full max-w-[300px] md:max-w-[400px]"
                 />
@@ -98,7 +98,7 @@ function Backstage() {
                   En studio
                 </figcaption>
                 <ZoomImage
-                  src="./public/studio.png"
+                  src="./studio.png"
                   alt="Straz'Zik en studio"
                   className="w-full max-w-[300px] md:max-w-[400px]"
                 />
@@ -110,7 +110,7 @@ function Backstage() {
                     Sur la route
                   </figcaption>
                   <ZoomImage
-                    src="./public/route.png"
+                    src="./route.png"
                     alt="Straz'Zik dans son van"
                     className="w-full max-w-[300px] md:max-w-[400px]"
                   />
@@ -120,7 +120,7 @@ function Backstage() {
                     En dédicace
                   </figcaption>
                   <ZoomImage
-                    src="./public/dedicace.png"
+                    src="./dedicace.png"
                     alt="Straz'Zik en séance de dédicace"
                     className="w-full max-w-[300px] md:max-w-[400px]"
                   />
@@ -133,8 +133,8 @@ function Backstage() {
 
       {/* La section "Set-up du groupe" avec les instruments et anecdotes */}
       <section className="flex justify-center">
-        <section className="bg-button/60 rounded-md mt-10 text-secondary p-6 mx-6 w-5/6">
-          <h2 className="text-2xl text-center font-semibold p-8">
+        <section className="bg-button/60 rounded-md mt-10 text-secondary p-6 mx-6 w-5/7">
+          <h2 className="text-xl text-center font-semibold mb-10 mt-5">
             Set-up du groupe
           </h2>
 
