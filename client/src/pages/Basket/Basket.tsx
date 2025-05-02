@@ -17,7 +17,6 @@ interface Goodie {
 function Basket() {
   const [totalPrice, setTotalPrice] = useState(0);
 
-
   const { basket, setBasket } = useBasket();
 
   console.log(basket);
@@ -34,7 +33,6 @@ function Basket() {
       ),
     );
   });
-
 
   function handleOrder(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -55,7 +53,8 @@ function Basket() {
       alert("Le panier est vide !");
     } else if (basket.length > 0 && !checkboxCGV.checked) {
       alert("Veuillez accepter les conditions générales de ventes.");
-    }}
+    }
+  }
 
   function handleAdd(product: Goodie) {
     const isInBasket = basket.some((item) => item.id === product.id);
@@ -94,7 +93,6 @@ function Basket() {
       );
     } else if (product.quantity === 1) {
       setBasket(basket.filter((item) => item.id !== product.id));
-
     }
   }
 
@@ -216,6 +214,5 @@ function Basket() {
     </div>
   );
 }
-
 
 export default Basket;
