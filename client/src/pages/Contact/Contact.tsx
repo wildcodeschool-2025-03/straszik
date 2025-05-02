@@ -84,23 +84,24 @@ function Contact() {
           Envoyer
         </button>
       </form>
-      <p className="text-secondary text-center m-10 font-bold">
+      <p className="text-secondary text-center mt-5 mx-5 font-bold">
         Une question ? Une demande de concert ? Envie de nous dire que vous
         aimez notre dernier son ?
       </p>
-      <p className="text-secondary text-center m-10 font-bold">
+      <p className="text-secondary text-center m-5 font-bold">
         N’hésitez pas à nous écrire, on répond dès qu’on sort du studio !
       </p>
-      <section className="text-secondary font-bold bg-button/60 m-auto rounded-3xl flex flex-col pt-10 pb-10 w-5/7 md:max-w-6xl mb-10 md:flex-wrap md:flex-row md:w-10/12 md:px-10 md:justify-around gap-10">
-        <article className="bg-block mx-auto items-center rounded-3xl border-4 border-secondary p-4 gap-4 text-sm w-[220px] md:w-1/3">
-          <figure className="relative w-40 h-50 md:w-64 md:h-64 overflow-hidden rounded-2xl shadow-lg mb-4 mx-auto">
+      <section className="text-secondary font-bold bg-button/60 m-auto rounded-3xl flex flex-col pt-10 pb-10 w-5/7 md:max-w-6xl mb-10 md:flex-wrap md:flex-row md:w-10/12 md:px-10 md:justify-center gap-10 md:gap-5 lg:gap-0">
+        <article className="bg-block mx-auto items-center rounded-3xl border-4 border-secondary p-3 gap-4 text-sm w-[200px] md:w-[250px] lg:w-[300px] xl:w-[350px]">
+          <figure className="relative w-[150px] md:w-[200px] lg:w-[250px] xl:w-[300px] overflow-hidden rounded-2xl shadow-lg mb-4 mx-auto">
             <img
-              src="/vinyle.png"
+              src="/maison-musicien.png"
               alt="Logo du groupe"
-              className="max-w-[160px] object-contain md:max-w-[260px] rounded-lg mx-auto"
+              className="w-full object-contain rounded-lg mx-auto"
             />
             <figcaption className="absolute bottom-0 w-full bg-black/50 text-white text-center text-sm font-semibold py-2 px-3">
-              STRAS’ZIK — Rock alternatif
+              STRAS’ZIK <br />
+              Rock alternatif
             </figcaption>
           </figure>
           <div className="ml-2 md:ml-5 text-left font-semibold">
@@ -113,15 +114,15 @@ function Contact() {
           </div>
         </article>
 
-        <article className="bg-block mx-auto items-center rounded-3xl border-4 border-secondary p-4 gap-4 text-sm w-[220px] md:w-1/3">
-          <figure className="relative w-40 h-50 md:w-64 md:h-64 overflow-hidden rounded-2xl shadow-lg mb-4 mx-auto">
+        <article className="bg-block mx-auto items-center rounded-3xl border-4 border-secondary p-3 gap-4 text-sm w-[200px] md:w-[250px] lg:w-[300px] xl:w-[350px]">
+          <figure className="relative w-[150px] md:w-[200px] lg:w-[250px] xl:w-[300px] overflow-hidden rounded-2xl shadow-lg mb-4 mx-auto">
             <img
-              src="/yavuz-kutuk.jpeg"
+              src="/yavuz-kutuk.png"
               alt="Yavuz KUTUK - Manager"
-              className="max-w-[160px] object-contain md:max-w-[260px] rounded-lg mx-auto"
+              className="w-full object-contain rounded-lg mx-auto"
             />
             <figcaption className="absolute bottom-0 w-full bg-black/50 text-white text-center text-sm font-semibold py-2 px-3">
-              Yavuz KUTUK — Manager
+              Yavuz KUTUK <br /> Manager
             </figcaption>
           </figure>
           <div className="ml-2 md:ml-5 text-left font-semibold">
