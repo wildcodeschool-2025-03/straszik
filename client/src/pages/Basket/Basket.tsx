@@ -15,7 +15,7 @@ function Basket() {
   };
   const [totalPrice, setTotalPrice] = useState(0);
   //   const [removeProducts, setremoveProducts] = useState<UniqueProduct[]>([]);
-  const { basket } = useBasket();
+  const { basket, setBasket } = useBasket();
   const uniqueProducts = basket.reduce<UniqueProduct[]>((acc, product) => {
     const existingProduct = acc.find((p) => p.id === product.id);
     if (existingProduct) {
@@ -44,6 +44,28 @@ function Basket() {
       ),
     );
   });
+
+  function handleOrder(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    localStorage.setItem("newOrder", JSON.stringify(basket));
+    const checkboxCGV = document.getElementById(
+      "checkboxCGV",
+    ) as HTMLInputElement;
+    if (basket.length > 0 && checkboxCGV.checked) {
+      const orderHistory = JSON.parse(
+        localStorage.getItem("orderHistory") || "[]",
+      );
+      orderHistory.push(basket);
+      localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
+      localStorage.removeItem("newOrder");
+      setBasket([]);
+      alert("Merci pour votre commande !");
+    } else if (basket.length === 0) {
+      alert("Le panier est vide !");
+    } else if (basket.length > 0 && !checkboxCGV.checked) {
+      alert("Veuillez accepter les conditions générales de ventes.");
+    }
+  }
 
   return (
     <div>
@@ -120,14 +142,15 @@ function Basket() {
 
       <section className="flex justify-end items-center mt-5 w-full mx-auto max-w-[300px] md:max-w-[650px] border-4 text-secondary font-bold bg-block px-3 py-3 rounded-2xl">
         <div className="flex   ">
-          <input type="checkbox" className="mr-2" />
-          <label htmlFor="checkboxCG" className="text-xs mr-2 md:text-base">
+          <input type="checkbox" id="checkboxCGV" className="mr-2" />
+          <label htmlFor="checkboxCGV" className="text-xs mr-2 md:text-base">
             Je reconnais avoir lu et accepté les conditions générales de ventes.
           </label>
         </div>
         <button
           type="submit"
           className="bg-button px-4 rounded-full mb-3 mt-3 border-secondary border-3 font-semibold text-sm md:text-base"
+          onClick={handleOrder}
         >
           Valider la commande
         </button>

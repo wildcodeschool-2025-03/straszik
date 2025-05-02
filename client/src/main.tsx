@@ -9,11 +9,13 @@ import Accueil from "./pages/Accueil/Accueil";
 import Backstage from "./pages/Backstage/Backstage";
 import Basket from "./pages/Basket/Basket.tsx";
 import Boutique from "./pages/Boutique/Boutique";
+import CGV from "./pages/CGV/CGV";
 import Compte from "./pages/Compte/Compte";
 import Contact from "./pages/Contact/Contact";
 import Discographie from "./pages/Discographie/Discographie";
 import Evenements from "./pages/Evenements/Evenements";
 import Log from "./pages/Log/Log";
+import MentionsLegales from "./pages/MentionsLegales/MentionsLegales.tsx";
 import Rockband from "./pages/Rockband/Rockband";
 import Sign from "./pages/Sign/Sign";
 
@@ -66,6 +68,14 @@ const router = createBrowserRouter([
       {
         path: "/sign-in",
         element: <Sign />,
+      },
+      {
+        path: "/cgv",
+        element: <CGV />,
+      },
+      {
+        path: "/mentions-legales",
+        element: <MentionsLegales />,
       },
     ],
   },

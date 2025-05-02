@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 function Footer() {
   // Fonction pour gérer l'inscription à la newsletter et sauvegarder l'email dans le localStorage
   function handleKeyDown(e: React.KeyboardEvent) {
@@ -41,12 +43,12 @@ function Footer() {
         </form>
       </div>
 
-      <section className="p-2 flex flex-row items-center w-full justify-between">
-        <div className="flex items-center gap-2">
+      <section className="p-2 flex flex-row md:items-center w-full justify-between items-end">
+        <div className="flex items-center gap-1 md:gap-2 w-30 md:w-50">
           <p className="text-xl">&copy;</p>
-          <p className="text-sm italic">
-            Tous droits réservés <br />
-            Stras'Zik
+          <p className="text-xs md:text-sm italic">
+            Tous droits
+            <br /> réservés Stras'Zik
           </p>
         </div>
 
@@ -74,6 +76,20 @@ function Footer() {
               className="w-7 h-7 hover:scale-120"
             />
           </a>
+        </div>
+
+        <div className="w-30 text-right md:w-50 flex flex-col md:flex-col-reverse">
+          <p className="text-xs md:text-sm italic">
+            <Link to="/cgv" className="hidden md:block">
+              Conditions Générales de Vente
+            </Link>
+            <Link to="/cgv" className="md:hidden">
+              CGV
+            </Link>
+          </p>
+          <p className="text-xs md:text-sm italic">
+            <Link to="/mentions-legales">Mentions Légales</Link>
+          </p>
         </div>
       </section>
     </section>
