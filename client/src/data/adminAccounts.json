@@ -1,0 +1,32 @@
+[
+  {
+    "firstName": "Stras'Zik",
+    "lastName": "STRAS'ZIK",
+    "email": "straszik@gmail.com",
+    "password": "straszik123"
+  },
+  {
+    "firstName": "Alexandra",
+    "lastName": "PASTOR",
+    "email": "pastoralex@free.fr",
+    "password": "admin"
+  },
+  {
+    "firstName": "Quentin",
+    "lastName": "BONZOM",
+    "email": "qbonzom@gmail.com",
+    "password": "admin"
+  },
+  {
+    "firstName": "Eric",
+    "lastName": "LESAFFRE",
+    "email": "belo38690@gmail.com",
+    "password": "admin"
+  },
+  {
+    "firstName": "Maxime",
+    "lastName": "GIAMPAOLI",
+    "email": "maxime.giampaoli@gmail.com",
+    "password": "admin"
+  }
+]
