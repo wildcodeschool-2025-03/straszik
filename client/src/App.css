@@ -31,3 +31,43 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+@keyframes spin-once {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-once {
+  animation: spin-once 2s ease-in-out forwards;
+}
+/* Animation de mouvement avant-arrière */
+@keyframes move-forward-backward {
+  0% {
+    transform: perspective(500px) translateZ(0);
+  }
+  50% {
+    transform: perspective(500px) translateZ(15px);
+  }
+  100% {
+    transform: perspective(500px) translateZ(0);
+  }
+}
+
+/* Appliquer l'animation au logo */
+.logo-animation {
+  animation: move-forward-backward 2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Aspect des portes */
+.bg-door {
+  background: url("/porte-garage.png");
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+  border-bottom: 2px solid #444;
+}

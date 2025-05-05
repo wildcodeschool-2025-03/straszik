@@ -1,3 +1,6 @@
+import { useState } from "react";
+import AudioPlayer from "../AudioPlayer/AudioPlayer";
+
 //Interface pour typer les données de l'Album
 interface Track {
   id: number;
@@ -20,11 +23,20 @@ interface AlbumDetailsProps {
 
 // Composant AlbumDetails qui affiche les détails d'un album
 function AlbumDetails({ album }: AlbumDetailsProps) {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const tracks = [
+    {
+      id: album.id,
+      title: album.title,
+      sound: album.sound,
+    },
+  ];
+
   return (
     <section className="md:flex md:justify-center">
       <section
         key={album.id}
-        className="bg-block mt-15 text-secondary flex flex-col justify-center gap-10 p-6 rounded-2xl mx-5 border-secondary border-4 md:flex-row md:w-2/3 md:justify-around"
+        className="bg-block mt-15 text-secondary flex flex-col justify-center gap-10 p-6 rounded-2xl mx-5 border-secondary border-4 md:flex-row lg:w-2/3 md:justify-around"
       >
         <div className="md:w-1/2">
           <div>
@@ -43,15 +55,15 @@ function AlbumDetails({ album }: AlbumDetailsProps) {
             <h2 className="font-semibold text-xl">
               Lire un extrait de l'album
             </h2>
-            {album.sound ? (
-              // biome-ignore lint/a11y/useMediaCaption: <explanation>
-              <audio controls className="mt-2 w-full max-w-md">
-                <source src={album.sound} type="audio/mpeg" />
-                Votre navigateur ne supporte pas la lecture audio.
-              </audio>
-            ) : (
-              <p className="mt-2 italic">Aucun extrait disponible</p>
-            )}
+            <div className="w-full">
+              <div className="lg:w-[400px] xl:w-[500px] 2xl:w-[600px]">
+                <AudioPlayer
+                  tracks={tracks}
+                  currentTrackIndex={activeIndex}
+                  onTrackChange={(newIdx) => setActiveIndex(newIdx)}
+                />
+              </div>
+            </div>
           </div>
         </div>
 

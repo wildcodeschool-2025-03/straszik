@@ -1,17 +1,59 @@
+import { useEffect, useState } from "react";
+
+interface AdminAccount {
+  email: string;
+  password: string;
+}
+
 function LogInAccount() {
-  const userList = JSON.parse(localStorage.getItem("userList") || "{}");
+  const userList = JSON.parse(localStorage.getItem("userList") || "[]");
+
+  const [adminAccounts, setAdminAccounts] = useState<AdminAccount[]>([]);
+
+  useEffect(() => {
+    fetch("/src/data/adminAccounts.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setAdminAccounts(data);
+      })
+      .catch((error) =>
+        console.error("Erreur lors du chargement des e-mails admins :", error),
+      );
+  }, []);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    for (let i = 0; i < userList.length; i++) {
-      if (
-        userList[i].email === (e.currentTarget[0] as HTMLInputElement).value &&
-        userList[i].password === (e.currentTarget[1] as HTMLInputElement).value
-      ) {
-        localStorage.setItem("userConnected", JSON.stringify(userList[i]));
-        window.location.href = "/";
+    const emailInput = (e.currentTarget[0] as HTMLInputElement).value;
+    const passwordInput = (e.currentTarget[1] as HTMLInputElement).value;
+
+    const admin = adminAccounts.find(
+      (admin: { email: string }) => admin.email === emailInput,
+    );
+    if (admin) {
+      if (admin.password !== passwordInput) {
+        alert("Mot de passe incorrect");
+        return;
       }
+      localStorage.setItem("userConnected", JSON.stringify(admin));
+      window.location.href = "/admin";
+      return;
     }
+
+    const user = userList.find(
+      (user: { email: string; password: string }) => user.email === emailInput,
+    );
+    if (user) {
+      if (user.password !== passwordInput) {
+        alert("Mot de passe incorrect");
+        return;
+      }
+      localStorage.setItem("userConnected", JSON.stringify(user));
+      window.location.href = "/compte";
+      return;
+    }
+
+    alert("Aucun compte n'est associé à cette adresse e-mail");
+    return;
   }
 
   return (
