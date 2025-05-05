@@ -54,7 +54,7 @@ function AlbumHome({ albums }: AlbumHomeProps) {
 
       {/* Player responsive container */}
       <div className="w-full">
-        <div className="max-w-full">
+        <div className="flex justify-center items-center">
           <AudioPlayer
             tracks={tracks}
             currentTrackIndex={activeIndex}

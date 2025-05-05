@@ -44,7 +44,7 @@ const hotspotsData: Hotspot[] = [
     top: 35,
     left: 60,
     name: "Alex",
-    role: "Chanteur",
+    role: "Chanteuse",
     anecdote: "Son premier micro était une brosse à cheveux !",
   },
   {
@@ -298,7 +298,7 @@ function Accueil() {
         </div>
 
         {/* CARTE DISCOGRAPHIE */}
-        <div className="bg-button/60 p-6 rounded-3xl shadow-lg flex flex-col justify-between ">
+        <div className="bg-button/60 p-6 rounded-3xl shadow-lg flex flex-col justify-between">
           <AlbumHome albums={albums} />
         </div>
 
