@@ -25,12 +25,12 @@ function AlbumHome({ albums }: AlbumHomeProps) {
   return (
     <>
       {/* Title: */}
-      <h2 className="text-secondary text-2xl font-bold mb-4 text-center">
+      <h2 className="text-secondary text-2xl font-bold mb-6 text-center">
         Discographie
       </h2>
 
       {/* Covers grid */}
-      <div className="grid grid-cols-2 justify-items-center  lg:grid-cols-4 gap-4 mb-2">
+      <div className="grid grid-cols-2 justify-items-center lg:grid-cols-4 gap-4 mb-2">
         {albums.map((album, idx) => (
           <div
             key={album.id}
@@ -46,7 +46,7 @@ function AlbumHome({ albums }: AlbumHomeProps) {
             <img
               src={album.image}
               alt={album.title}
-              className="w-50 object-cover border-4 border-secondary rounded-xl"
+              className="w-32 object-cover border-4 border-secondary rounded-xl"
             />
           </div>
         ))}
