@@ -17,26 +17,33 @@ function GoodiesHome({ goodies }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
+ useEffect(() => {
+  const track = trackRef.current;
+  if (!track) return;
 
-    // largeur d’un groupe (la moitié du track total)
+  let x = 0;
+  let rafId: number;
+  const speed = 0.3;
+
+  const step = () => {
+    x += speed;
+    if (track.scrollWidth === 0) return;
+
+    // largeur totale divisée par 2 (car on a dupliqué)
     const groupWidth = track.scrollWidth / 2;
-    let x = 0;
-    const speed = 0.3; // px par frame
 
-    let rafId: number;
-    const step = () => {
-      x += speed;
-      if (x >= groupWidth) x = 0;
-      track.style.transform = `translateX(-${x}px)`;
-      rafId = requestAnimationFrame(step);
-    };
+    // Réduction progressive pour éviter un reset visuel brutal
+    if (x >= groupWidth) {
+      x = x - groupWidth;
+    }
 
+    track.style.transform = `translateX(-${x}px)`;
     rafId = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(rafId);
-  }, []);
+  };
+
+  rafId = requestAnimationFrame(step);
+  return () => cancelAnimationFrame(rafId);
+}, []);
 
   return (
     <div>
@@ -55,7 +62,7 @@ function GoodiesHome({ goodies }: Props) {
               <Link
                 key={`${item.id}-${i}`}
                 to="/boutique"
-                className="flex-shrink-0 w-57 rounded-xl mx-2 cursor-pointer bg-block p-2 border-4 border-secondary flex flex-col items-center"
+                className="flex-shrink-0 w-56 rounded-xl mx-2 cursor-pointer bg-block p-2 border-4 border-secondary flex flex-col items-center"
               >
                 <img
                   src={item.image}
