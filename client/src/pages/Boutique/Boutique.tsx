@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useBasket } from "../../Context/BasketContext";
 import Header from "../../components/Header/Header";
@@ -23,15 +24,26 @@ function Boutique() {
   }, []);
 
   const handleBasket = (product: Goodie) => {
-    const item = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      description: product.description,
-      quantity: 1,
-    };
-    setBasket([...basket, item]);
+    const isInBasket = basket.some((item) => item.id === product.id);
+
+    if (isInBasket) {
+      const updatedBasket = basket.map((item) =>
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item,
+      );
+      setBasket(updatedBasket);
+    } else {
+      const newItem = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        description: product.description,
+        quantity: 1,
+      };
+      setBasket([...basket, newItem]);
+    }
   };
 
   return (
@@ -67,14 +79,14 @@ function Boutique() {
                       {products.price} €
                     </span>
                   </div>
-                  <button
-                    type="button"
-                    className="bg-button p-2.5 px-4 rounded-full mb-3 mt-3 border-secondary border-3 font-semibold"
-                    id={String(products.id)}
+                  <motion.button
                     onClick={() => handleBasket(products)}
+                    whileTap={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="bg-button hover:bg-button/50 p-2.5 px-4 rounded-full mb-3 mt-3 border-secondary border-3 font-semibold"
                   >
                     Ajouter au panier
-                  </button>
+                  </motion.button>
                 </div>
               </div>
             ))}
