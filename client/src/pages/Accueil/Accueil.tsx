@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { MdAccountCircle } from "react-icons/md";
+import { PiBasketBold } from "react-icons/pi";
 import { Link } from "react-router";
 import photogroupe from "../../../public/photogroupe.png";
 import AlbumHome from "../../components/AlbumHome/AlbumHome";
 import DateHome from "../../components/EventsHome/EventsHome";
 import GoodiesHome from "../../components/GoodiesHome/GoodiesHome";
 import { PhotoHotspots } from "../../components/PhotoHotspots/PhotoHotspots";
+import adminAccounts from "../../data/adminAccounts.json";
 
 const apiEventsUrl = import.meta.env.VITE_API_EVENTS_URL;
 const apiDiscographiesUrl = import.meta.env.VITE_API_DISCOGRAPHIE_URL;
@@ -126,26 +129,35 @@ function Accueil() {
 
   return (
     <>
-      <section>
-        <div>
-          {/*login*/}
-          <div className="absolute right-3 min-md:right-1">
+      <section className="p-3">
+        {/*login*/}
+        <div className="absolute right-3 min-md:right-1">
+          {Object.keys(userConnected).length === 0 ? null : (
+            <p className="text-secondary font-semibold lg:text-sm mr-1 min-md:mr-2 text-xs">
+              Bonjour {userConnected.firstName}
+            </p>
+          )}
+          <div className="flex items-center flex-row-reverse">
             <Link
               to={
-                Object.keys(userConnected).length === 0 ? "/log-in" : "/compte"
+                Object.keys(userConnected).length === 0
+                  ? "/log-in"
+                  : adminAccounts.find(
+                        (admin) => admin.email === userConnected.email,
+                      )
+                    ? "/admin"
+                    : "/compte"
               }
-              className="flex flex-col items-end md:items-center md:flex-row"
+              className="flex justify-end md:items-center md:flex-row"
             >
-              {Object.keys(userConnected).length === 0 ? null : (
-                <p className="text-secondary font-semibold lg:text-sm mr-1 min-md:mr-2 text-xs">
-                  Bonjour {userConnected.firstName}
-                </p>
-              )}
-              <img
-                src="./account_circle.png"
-                alt="logo_login"
-                className="w-10 h-10"
-              />
+              <div className="text-black text-4xl p-1 ">
+                <MdAccountCircle />
+              </div>
+            </Link>
+            <Link to="/panier">
+              <div className="text-black text-xl p-1 border-2 rounded-full ">
+                <PiBasketBold />
+              </div>
             </Link>
           </div>
         </div>

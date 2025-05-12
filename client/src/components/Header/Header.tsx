@@ -2,7 +2,9 @@ import { useState } from "react";
 import { MdAccountCircle } from "react-icons/md";
 import { PiBasketBold } from "react-icons/pi";
 import { Link } from "react-router";
+import adminAccounts from "../../data/adminAccounts.json";
 import { useBasket } from "../../Context/BasketContext";
+
 
 function Header() {
   const { basket } = useBasket();
@@ -14,6 +16,7 @@ function Header() {
   const userConnected = JSON.parse(
     localStorage.getItem("userConnected") || "{}",
   );
+
   const [open, setOpen] = useState(false);
 
   return (
@@ -57,7 +60,13 @@ function Header() {
           <div className="flex items-center flex-row-reverse">
             <Link
               to={
-                Object.keys(userConnected).length === 0 ? "/log-in" : "/compte"
+                Object.keys(userConnected).length === 0
+                  ? "/log-in"
+                  : adminAccounts.find(
+                        (admin) => admin.email === userConnected.email,
+                      )
+                    ? "/admin"
+                    : "/compte"
               }
               className="flex justify-end md:items-center md:flex-row"
             >
@@ -147,7 +156,7 @@ function Header() {
         <Link
           onClick={() => setOpen(false)}
           to="/rockband"
-          className="hover:text-button"
+          className="focus:text-button"
         >
           Rockband
         </Link>
@@ -155,7 +164,7 @@ function Header() {
         <Link
           onClick={() => setOpen(false)}
           to="/discographie"
-          className="hover:text-button"
+          className="focus:text-button"
         >
           Discographie
         </Link>
@@ -163,7 +172,7 @@ function Header() {
         <Link
           onClick={() => setOpen(false)}
           to="/backstage"
-          className="hover:text-button"
+          className="focus:text-button"
         >
           Backstage
         </Link>
@@ -171,7 +180,7 @@ function Header() {
         <Link
           onClick={() => setOpen(false)}
           to="/evenements"
-          className="hover:text-button"
+          className="focus:text-button"
         >
           Evènements
         </Link>
@@ -179,14 +188,14 @@ function Header() {
         <Link
           onClick={() => setOpen(false)}
           to="/boutique"
-          className="hover:text-button"
+          className="focus:text-button"
         >
           Boutique
         </Link>
         <Link
           onClick={() => setOpen(false)}
           to="/contact"
-          className="hover:text-button"
+          className="focus:text-button"
         >
           Contact
         </Link>

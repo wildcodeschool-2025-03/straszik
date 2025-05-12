@@ -6,6 +6,7 @@ import App from "./App";
 // page components
 
 import Accueil from "./pages/Accueil/Accueil";
+import Admin from "./pages/Admin/Admin.tsx";
 import Backstage from "./pages/Backstage/Backstage";
 import Basket from "./pages/Basket/Basket.tsx";
 import Boutique from "./pages/Boutique/Boutique";
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "/mentions-legales",
         element: <MentionsLegales />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
       },
     ],
   },
