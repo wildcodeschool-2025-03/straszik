@@ -74,7 +74,7 @@ function GoodiesHome({ goodies }: Props) {
                 </h3>
                 <p className="text-sm text-secondary">{item.description}</p>
                 <span className="block mt-1 font-bold text-secondary ">
-                  {item.price} €
+                  {item.price.toFixed(2)} €
                 </span>
               </Link>
             ))}

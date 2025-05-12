@@ -166,7 +166,8 @@ function Basket() {
                         </p>
                         {product.price ? (
                           <p className="text-xs lg:text-base">
-                            <strong>Prix : </strong> {product.price} €
+                            <strong>Prix : </strong> {product.price.toFixed(2)}{" "}
+                            €
                           </p>
                         ) : null}
                       </div>
@@ -191,7 +192,7 @@ function Basket() {
                   </td>
 
                   <td className="text-center text-lg border-t-2 fill-black ">
-                    {product.price * product.quantity} €
+                    {(product.price * product.quantity).toFixed(2)} €
                   </td>
 
                   <td className="text-center p-2 md:p-11 border-t-2">
@@ -216,7 +217,7 @@ function Basket() {
 
       <section className="flex justify-end mt-5 w-full mx-auto max-w-[300px] md:max-w-[650px] lg:max-w-[800px] xl:max-w-[1000px]">
         <div className="border-4 text-secondary font-bold bg-block px-3 py-3 rounded-2xl">
-          Total TTC : {totalPrice ? totalPrice : "0"} €
+          Total TTC : {(totalPrice ?? 0).toFixed(2)} €
         </div>
       </section>
 
