@@ -236,7 +236,7 @@ function Basket() {
         </div>
         {statusMessage && (
           <div
-            className={`mt-3 font-light text-sm text-center ${statusType === "error" ? "text-red-500" : "text-green-700"} rounded-xl`}
+            className={`mt-3 font-semibold text-sm text-center ${statusType === "error" ? "text-red-500" : "text-green-700"} rounded-xl`}
           >
             {statusMessage}
           </div>

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { MdAccountCircle } from "react-icons/md";
 import { PiBasketBold } from "react-icons/pi";
-import { useBasket } from "../../Context/BasketContext";
 import { Link } from "react-router";
 import photogroupe from "../../../public/photogroupe.png";
+import { useBasket } from "../../Context/BasketContext";
 import AlbumHome from "../../components/AlbumHome/AlbumHome";
 import DateHome from "../../components/EventsHome/EventsHome";
 import GoodiesHome from "../../components/GoodiesHome/GoodiesHome";
@@ -96,7 +96,7 @@ function setTracks(_arg0: Track[]) {
 }
 
 function Accueil() {
-const { basket } = useBasket();
+  const { basket } = useBasket();
   const productsInBasket = basket.reduce(
     (acc, product) => acc + product.quantity,
     0,
