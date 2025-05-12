@@ -93,7 +93,7 @@ function Boutique() {
                       {products.description}
                     </p>
                     <span className="text-xl font-semibold">
-                      {products.price} €
+                      {products.price.toFixed(2)} €
                     </span>
                   </div>
                   <motion.button
