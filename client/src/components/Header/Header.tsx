@@ -45,7 +45,7 @@ function Header() {
 
         {/* Logo */}
         <div className="md:hidden mx-auto">
-          <Link to="/">
+          <Link to="/home">
             <img src="./logo.png" className="w-40" alt="Stras'Zik logo" />
           </Link>
         </div>
@@ -116,7 +116,7 @@ function Header() {
           </div>
 
           <div className="hidden md:flex">
-            <Link to="/">
+            <Link to="/home">
               <img src="./logo.png" className="w-40" alt="Stras'Zik logo" />
             </Link>
           </div>

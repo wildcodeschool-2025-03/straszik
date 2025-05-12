@@ -3,8 +3,6 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 
 import App from "./App";
 
-// page components
-
 import Accueil from "./pages/Accueil/Accueil";
 import Admin from "./pages/Admin/Admin.tsx";
 import Backstage from "./pages/Backstage/Backstage";
@@ -14,6 +12,8 @@ import CGV from "./pages/CGV/CGV";
 import Compte from "./pages/Compte/Compte";
 import Contact from "./pages/Contact/Contact";
 import Discographie from "./pages/Discographie/Discographie";
+// page components
+import EnterPage from "./pages/EnterPage/EnterPage";
 import Evenements from "./pages/Evenements/Evenements";
 import Log from "./pages/Log/Log";
 import MentionsLegales from "./pages/MentionsLegales/MentionsLegales.tsx";
@@ -28,8 +28,9 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Accueil />,
+        element: <EnterPage />,
       },
+      { path: "/home", element: <Accueil /> },
       {
         path: "/rockband",
         element: <Rockband />,
