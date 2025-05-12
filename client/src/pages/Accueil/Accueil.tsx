@@ -3,6 +3,7 @@ import { MdAccountCircle } from "react-icons/md";
 import { PiBasketBold } from "react-icons/pi";
 import { Link } from "react-router";
 import photogroupe from "../../../public/photogroupe.png";
+import { useBasket } from "../../Context/BasketContext";
 import AlbumHome from "../../components/AlbumHome/AlbumHome";
 import DateHome from "../../components/EventsHome/EventsHome";
 import GoodiesHome from "../../components/GoodiesHome/GoodiesHome";
@@ -95,6 +96,12 @@ function setTracks(_arg0: Track[]) {
 }
 
 function Accueil() {
+  const { basket } = useBasket();
+  const productsInBasket = basket.reduce(
+    (acc, product) => acc + product.quantity,
+    0,
+  );
+
   const userConnected = JSON.parse(
     localStorage.getItem("userConnected") || "{}",
   );
@@ -157,6 +164,16 @@ function Accueil() {
             <Link to="/panier">
               <div className="text-black text-xl p-1 border-2 rounded-full ">
                 <PiBasketBold />
+                {productsInBasket > 0 && (
+                  <span className="absolute right-10 bg-[#4C7B74] text-white text-xs font-bold rounded-full px-1">
+                    {productsInBasket}
+                  </span>
+                )}
+                {productsInBasket === 0 && (
+                  <span className="absolute right-13 bg-[#4C7B74] text-white text-xs font-bold rounded-full px-1">
+                    0
+                  </span>
+                )}
               </div>
             </Link>
           </div>
