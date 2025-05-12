@@ -191,7 +191,7 @@ function Basket() {
                     </button>
                   </td>
 
-                  <td className="text-center text-lg border-t-2 fill-black ">
+                  <td className="text-center text border-t-2 fill-black ">
                     {(product.price * product.quantity).toFixed(2)} €
                   </td>
 
