@@ -17,33 +17,33 @@ function GoodiesHome({ goodies }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
- useEffect(() => {
-  const track = trackRef.current;
-  if (!track) return;
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
 
-  let x = 0;
-  let rafId: number;
-  const speed = 0.3;
+    let x = 0;
+    let rafId: number;
+    const speed = 0.3;
 
-  const step = () => {
-    x += speed;
-    if (track.scrollWidth === 0) return;
+    const step = () => {
+      x += speed;
+      if (track.scrollWidth === 0) return;
 
-    // largeur totale divisée par 2 (car on a dupliqué)
-    const groupWidth = track.scrollWidth / 2;
+      // largeur totale divisée par 2 (car on a dupliqué)
+      const groupWidth = track.scrollWidth / 2;
 
-    // Réduction progressive pour éviter un reset visuel brutal
-    if (x >= groupWidth) {
-      x = x - groupWidth;
-    }
+      // Réduction progressive pour éviter un reset visuel brutal
+      if (x >= groupWidth) {
+        x = x - groupWidth;
+      }
 
-    track.style.transform = `translateX(-${x}px)`;
+      track.style.transform = `translateX(-${x}px)`;
+      rafId = requestAnimationFrame(step);
+    };
+
     rafId = requestAnimationFrame(step);
-  };
-
-  rafId = requestAnimationFrame(step);
-  return () => cancelAnimationFrame(rafId);
-}, []);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
 
   return (
     <div>
