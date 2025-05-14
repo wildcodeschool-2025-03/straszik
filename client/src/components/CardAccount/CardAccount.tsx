@@ -1,12 +1,11 @@
-import { useEffect, useState, ChangeEvent } from "react";
+import { motion } from "framer-motion";
+import { type ChangeEvent, useEffect, useState } from "react";
 import {
   FaApplePay,
   FaCcMastercard,
   FaCcPaypal,
   FaCcVisa,
 } from "react-icons/fa";
-import { motion } from "framer-motion";
-
 
 interface accountInterface {
   id: number;
@@ -16,9 +15,11 @@ interface accountInterface {
   description: string;
 }
 
+interface User {
+  id: number;
+}
+
 const apiAccount = import.meta.env.VITE_API_ACCOUNT_URL;
-
-
 
 function CardAccount() {
   function handleDisconnect() {
@@ -57,7 +58,7 @@ function CardAccount() {
   }
 
   const [userConnected, setUserConnected] = useState(() =>
-    JSON.parse(localStorage.getItem("userConnected") || "{}")
+    JSON.parse(localStorage.getItem("userConnected") || "{}"),
   );
 
   // edition button
@@ -68,12 +69,12 @@ function CardAccount() {
     phoneNumber: userConnected.phoneNumber || "",
     email: userConnected.email || "",
     address: userConnected.address || "",
-    password: ""
+    password: "",
   });
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
   // Alerte de confirmation
@@ -85,7 +86,7 @@ function CardAccount() {
     localStorage.setItem("userConnected", JSON.stringify(updated));
 
     const list = JSON.parse(localStorage.getItem("userList") || "[]");
-    const idx = list.findIndex((u: any) => u.id === updated.id);
+    const idx = list.findIndex((u: User) => u.id === updated.id);
     if (idx !== -1) {
       list[idx] = { ...list[idx], ...formData };
       localStorage.setItem("userList", JSON.stringify(list));
@@ -104,7 +105,7 @@ function CardAccount() {
       phoneNumber: userConnected.phoneNumber || "",
       email: userConnected.email || "",
       address: userConnected.address || "",
-      password: ""
+      password: "",
     });
     setEditing(false);
   }
@@ -120,18 +121,17 @@ function CardAccount() {
 
   return (
     <>
-     {showAlert && (
-       <div className="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
-         Vos informations ont bien été mises à jour !
-       </div>
-     )}
+      {showAlert && (
+        <div className="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
+          Vos informations ont bien été mises à jour !
+        </div>
+      )}
       <section className="mb-12 ">
         <h1 className="text-secondary text-4xl font-extrabold text-center md:text-5xl mt-10 mb-14">
           MON COMPTE
         </h1>
-       
       </section>
-      
+
       <section className="md:grid md:grid-col-2 md:grid-rows-[40px_40px_40px_40px_40px] md:justify-center flex flex-col items-center gap-4 md:gap-4 mx-auto">
         <input
           name="lastName"
@@ -215,36 +215,36 @@ function CardAccount() {
           </div>
         </div>
       </section>
-       <div className="flex justify-center pt-2">
-          {!editing ? (
-            <motion.button
+      <div className="flex justify-center pt-2">
+        {!editing ? (
+          <motion.button
+            type="button"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 200 }}
+            onClick={() => setEditing(true)}
+            className="bg-button p-1.5 rounded-lg text-secondary"
+          >
+            Modifier mes Informations personnelles
+          </motion.button>
+        ) : (
+          <>
+            <button
               type="button"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 200 }}
-              onClick={() => setEditing(true)}
-              className="bg-button p-1.5 rounded-lg text-secondary"
+              onClick={handleSave}
+              className="bg-green-600 p-1.5 rounded-lg mr-2"
             >
-              Modifier mes Informations personnelles
-            </motion.button>
-          ) : (
-            <>
-              <button
-                type="button"
-                onClick={handleSave}
-                className="bg-green-600 p-1.5 rounded-lg mr-2"
-              >
-                Enregistrer
-              </button>
-              <button
-                type="button"
-                onClick={handleCancel}
-                className="bg-gray-400 p-1.5 rounded-lg"
-              >
-                Annuler
-              </button>
-            </>
-          )}
-        </div>
+              Enregistrer
+            </button>
+            <button
+              type="button"
+              onClick={handleCancel}
+              className="bg-gray-400 p-1.5 rounded-lg"
+            >
+              Annuler
+            </button>
+          </>
+        )}
+      </div>
 
       <section className="flex flex-col items-center justify-center text-center text-secondary bg-block rounded-2xl border-3 border-secondary mx-auto mt-4 w-[300px] md:w-[500px] p-2 gap-4">
         <p className="font-bold lg:text-lg">Informations d'abonnement</p>

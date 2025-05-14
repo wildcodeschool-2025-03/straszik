@@ -129,20 +129,22 @@ function Basket() {
         >
           <thead>
             <tr>
-              <th className="bg-block rounded-tl-lg text-secondary md:text-2xl font-bold md:p-4 pt-0.5 px-5 md:px-10 border-r-4 border-b-2">
+              <th className="bg-block rounded-tl-lg text-secondary md:text-2xl font-bold md:p-4 pt-0.5 px-5 md:px-10 border-r-4 border-b-4">
                 Produits
               </th>
-              <th className="bg-block text-secondary md:text-2xl font-bold md:p-4 pt-0.5 px-1 md:px-10 border-r-4 border-b-2">
+              <th className="bg-block text-secondary md:text-2xl font-bold md:p-4 pt-0.5 px-1 md:px-10 border-r-4 border-b-4">
                 Quantité
               </th>
-              <th className="bg-block text-secondary md:text-2xl font-bold text-center pt-0.5 md:p-4 px-1 md:px-10 border-r-4 border-b-2">
+              <th className="bg-block text-secondary md:text-2xl font-bold text-center pt-0.5 md:p-4 px-1 md:px-10 border-r-4 border-b-4">
                 Montant TTC
               </th>
-              <th className="bg-block rounded-tr-lg text-secondary md:text-2xl font-bold text-center pt-0.5 md:p-4 px-2 md:px-10 border-b-2">
-                <FaTrashCan
-                  className="cursor-pointer"
-                  onClick={() => handleRemoveAll()}
-                />
+              <th className="bg-block rounded-tr-lg text-secondary md:text-2xl font-bold text-center px-4 border-b-4">
+                <div className="flex items-center justify-center h-full w-full">
+                  <FaTrashCan
+                    className="cursor-pointer"
+                    onClick={() => handleRemoveAll()}
+                  />
+                </div>
               </th>
             </tr>
           </thead>
@@ -150,7 +152,7 @@ function Basket() {
             {basket.length > 0 ? (
               basket.map((product) => (
                 <tr key={product.id} className=" bg-block text-secondary">
-                  <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
+                  <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30">
                     <div className="flex items-center md:gap-2">
                       <img
                         src={product.image}
@@ -173,7 +175,7 @@ function Basket() {
                       </div>
                     </div>
                   </td>
-                  <td className="text-center text-lg border-t-2">
+                  <td className="text-center text-lg">
                     <button
                       type="button"
                       className="p-1 md:p-2 lg:p-3"
@@ -191,21 +193,23 @@ function Basket() {
                     </button>
                   </td>
 
-                  <td className="text-center text border-t-2 fill-black ">
+                  <td className="text-center text  fill-black ">
                     {(product.price * product.quantity).toFixed(2)} €
                   </td>
 
-                  <td className="text-center p-2 md:p-11 border-t-2">
-                    <FaTrashCan
-                      className="cursor-pointer"
-                      onClick={() => handleRemoveItem(product.id)}
-                    />
+                  <td>
+                    <div className="flex items-center justify-center h-full w-full">
+                      <FaTrashCan
+                        className="cursor-pointer"
+                        onClick={() => handleRemoveItem(product.id)}
+                      />
+                    </div>
                   </td>
                 </tr>
               ))
             ) : (
               <td
-                className="bg-block text-secondary text-center font-semibold border-t-2 p-4"
+                className="bg-block text-secondary text-center font-semibold p-4"
                 colSpan={4}
               >
                 Aucun produit dans votre panier...

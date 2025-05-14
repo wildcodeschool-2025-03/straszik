@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { FaTrashCan } from "react-icons/fa6";
 
@@ -21,19 +21,43 @@ interface NewUser {
 }
 
 function UserList() {
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [statusType, setStatusType] = useState<string>("");
+
+  useEffect(() => {
+    if (statusMessage) {
+      const timer = setTimeout(() => setStatusMessage(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [statusMessage]);
+
   const [userList, setUserList] = useState<User[]>(
     JSON.parse(localStorage.getItem("userList") || "[]") as User[],
   );
-  const [isNewEmail, setIsNewEmail] = useState(false);
 
-  const newUser: NewUser = {
+  const [isNewEmail, setIsNewEmail] = useState<boolean>(false);
+
+  const [newUser, setNewUser] = useState<NewUser>({
     id: 0,
     email: "",
     firstName: "",
     lastName: "",
     address: "",
     phoneNumber: "",
-  };
+  });
+
+  function handleRemoveAllUsers() {
+    setUserList([]);
+    localStorage.removeItem("userList");
+    const allInput = document.querySelectorAll("input");
+    for (const input of allInput) {
+      input.value = "";
+    }
+    const allTextArea = document.querySelectorAll("textarea");
+    for (const textArea of allTextArea) {
+      textArea.value = "";
+    }
+  }
 
   function handleRemoveUser(id: number) {
     setUserList((prevUserList) =>
@@ -46,178 +70,250 @@ function UserList() {
   }
 
   function handleAddUser() {
-    if (isNewEmail) {
-      newUser.id = userList.length + 1;
-      const newUserList = [...userList, newUser];
-      localStorage.setItem("userList", JSON.stringify(newUserList));
-      setUserList(newUserList);
-      const allInput = document.querySelectorAll("input");
-      for (const input of allInput) {
-        input.value = "";
-      }
-    } else {
-      alert("Cet email existe déjà");
+    if (
+      newUser.email === "" ||
+      newUser.firstName === "" ||
+      newUser.lastName === "" ||
+      newUser.address === "" ||
+      newUser.phoneNumber === ""
+    ) {
+      setStatusMessage("❌ Tous les champs sont obligatoires");
+      setStatusType("error");
+      return;
     }
+
+    if (!isNewEmail) {
+      setStatusMessage(
+        "❌ Cet email existe déjà dans la liste des utilisateurs",
+      );
+      setStatusType("error");
+      return;
+    }
+
+    const newUserWithId = { ...newUser, id: userList.length + 1 };
+    const newUserList = [...userList, newUserWithId];
+    setUserList(newUserList);
+    localStorage.setItem("userList", JSON.stringify(newUserList));
+    setStatusMessage("✅ Utilisateur ajouté avec succès");
+    setStatusType("success");
+
+    // Réinitialiser le formulaire après l'ajout
+    setNewUser({
+      id: 0,
+      email: "",
+      firstName: "",
+      lastName: "",
+      address: "",
+      phoneNumber: "",
+    });
   }
 
   function handleLastName(e: React.ChangeEvent<HTMLInputElement>) {
-    e.preventDefault();
-    newUser.lastName = e.currentTarget.value;
-    console.log(newUser.lastName);
+    setNewUser((prev) => ({ ...prev, lastName: e.target.value }));
   }
 
   function handleFirstName(e: React.ChangeEvent<HTMLInputElement>) {
-    e.preventDefault();
-    newUser.firstName = e.currentTarget.value;
-    console.log(newUser.firstName);
+    setNewUser((prev) => ({ ...prev, firstName: e.target.value }));
   }
 
   function handleEmail(e: React.ChangeEvent<HTMLInputElement>) {
-    e.preventDefault();
-    if (userList.some((user) => user.email === newUser.email)) {
-      setIsNewEmail(false);
-    } else {
-      setIsNewEmail(true);
-      newUser.email = e.currentTarget.value;
-      console.log(newUser.email);
-    }
+    const email = e.target.value;
+    setNewUser((prev) => ({ ...prev, email }));
+
+    const emailExists = userList.some((user) => user.email === email);
+    setIsNewEmail(!emailExists);
   }
 
-  function handleAddress(e: React.ChangeEvent<HTMLInputElement>) {
-    e.preventDefault();
-    newUser.address = e.currentTarget.value;
-    console.log(newUser.address);
+  function handleAddress(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    setNewUser((prev) => ({ ...prev, address: e.target.value }));
   }
 
   function handlePhoneNumber(e: React.ChangeEvent<HTMLInputElement>) {
-    e.preventDefault();
-    newUser.phoneNumber = e.currentTarget.value;
-    console.log(newUser.phoneNumber);
+    setNewUser((prev) => ({ ...prev, phoneNumber: e.target.value }));
   }
 
   return (
     <>
       <h2 className="text-2xl text-center my-5 text-secondary font-bold mt-16">
-        Comptes
+        Gestion des comptes utilisateurs
       </h2>
-      <table
-        className="overflow-hidden
-            border-separate border-spacing-0 rounded-lg border-4 border-secondary mx-auto w-full max-w-[250px] md:max-w-[500px] lg:max-w-[800px] xl:max-w-[1000px]"
-      >
-        <thead>
-          <tr>
-            <th className="bg-block rounded-tl-lg text-secondary md:text-2xl font-bold md:p-4 pt-0.5 px-1 md:px-10 border-r-4 border-b-2">
-              ID
-            </th>
-            <th className="bg-block text-secondary md:text-2xl font-bold md:p-4 pt-0.5 px-1 md:px-10 border-r-4 border-b-2">
-              Nom
-            </th>
-            <th className="bg-block text-secondary md:text-2xl font-bold text-center pt-0.5 md:p-4 px-1 md:px-10 border-r-4 border-b-2">
-              Prénom
-            </th>
-            <th className="bg-block text-secondary md:text-2xl font-bold text-center pt-0.5 md:p-4 px-1 md:px-10 border-r-4 border-b-2">
-              Email
-            </th>
-            <th className="bg-block text-secondary md:text-2xl font-bold text-center pt-0.5 md:p-4 px-1 md:px-10 border-r-4 border-b-2">
-              Adresse
-            </th>
-            <th className="bg-block text-secondary md:text-2xl font-bold text-center pt-0.5 md:p-4 px-1 md:px-10 border-r-4 border-b-2">
-              Téléphone
-            </th>
-            <th className="bg-block rounded-tr-lg text-secondary md:text-2xl font-bold text-center pt-0.5 md:p-4 px-2 md:px-10 border-b-2">
-              <FaTrashCan />
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {userList.length > 0 ? (
-            userList.map((user) => (
-              <tr key={user.id} className=" bg-block text-secondary">
-                <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
-                  <p> {user.id}</p>
-                </td>
-                <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
-                  <p> {user.lastName}</p>
-                </td>
-                <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
-                  <p> {user.firstName}</p>
-                </td>
-                <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
-                  <p> {user.email}</p>
-                </td>
-                <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
-                  <p> {user.address}</p>
-                </td>
-                <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
-                  <p> {user.phoneNumber}</p>
-                </td>
-                <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
-                  <p> </p>
-                </td>
-                <td className="text-center p-2 md:p-11 border-t-2">
-                  <FaTrashCan onClick={() => handleRemoveUser(user.id)} />
+
+      <div className="overflow-x-auto w-full px-4">
+        <table className="table-fixed w-full min-w-[1000px] border-separate border-spacing-0 rounded-lg border-4 border-secondary">
+          <thead>
+            <tr>
+              <th className="w-12 bg-block rounded-tl-lg text-secondary md:text-xl font-bold h-8 border-r-4 border-b-4">
+                ID
+              </th>
+              <th className="w-32 bg-block text-secondary md:text-xl font-bold border-r-4 border-b-4">
+                Nom
+              </th>
+              <th className="w-40 bg-block text-secondary md:text-xl font-bold border-r-4 border-b-4">
+                Prénom
+              </th>
+              <th className="w-60 bg-block text-secondary md:text-xl font-bold border-r-4 border-b-4">
+                Email
+              </th>
+              <th className="w-64 bg-block text-secondary md:text-xl font-bold border-r-4 border-b-4">
+                Adresse
+              </th>
+              <th className="w-52 bg-block text-secondary md:text-xl font-bold border-r-4 border-b-4">
+                Téléphone
+              </th>
+              <th className="w-16 bg-block rounded-tr-lg text-secondary md:text-xl font-bold text-center border-b-4">
+                <div className="flex items-center justify-center h-full w-full">
+                  <FaTrashCan
+                    className="cursor-pointer"
+                    onClick={() => handleRemoveAllUsers()}
+                  />
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {userList.length > 0 ? (
+              userList.map((user) => (
+                <tr
+                  key={user.id}
+                  className="bg-block text-secondary border-t-2"
+                >
+                  <td className="w-12 text-secondary  h-12 md:h-14 lg:h-16 text-center">
+                    {user.id}
+                  </td>
+                  <td className="w-32 text-secondary  h-12 md:h-14 lg:h-16 pl-2">
+                    {user.lastName}
+                  </td>
+                  <td className="w-40 text-secondary  h-12 md:h-14 lg:h-16 pl-2">
+                    {user.firstName}
+                  </td>
+                  <td className="w-60 text-secondary  h-12 md:h-14 lg:h-16 pl-2">
+                    {user.email}
+                  </td>
+                  <td className="w-64 text-secondary  h-12 md:h-14 lg:h-16 pl-2 break-words">
+                    {user.address}
+                  </td>
+                  <td className="w-52 text-secondary  h-12 md:h-14 lg:h-16 pl-2">
+                    {user.phoneNumber}
+                  </td>
+                  <td className="w-16 text-secondary  h-12 md:h-14 lg:h-16">
+                    <div className="flex items-center justify-center h-full w-full">
+                      <FaTrashCan
+                        className="cursor-pointer"
+                        onClick={() => handleRemoveUser(user.id)}
+                      />
+                    </div>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  className="bg-block text-secondary text-center font-semibold h-12 md:h-14 lg:h-16"
+                  colSpan={7}
+                >
+                  Aucun compte utilisateur enregistré...
                 </td>
               </tr>
-            ))
-          ) : (
-            <td
-              className="bg-block text-secondary text-center font-semibold border-t-2 p-4"
-              colSpan={8}
-            >
-              Aucun utilisateur inscrit...
-            </td>
-          )}
-          <tr className=" bg-block text-secondary">
-            <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
-              {" "}
-            </td>
-            <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
-              <input
-                name="lastName"
-                type="text"
-                placeholder="Nom"
-                onChange={handleLastName}
-              />
-            </td>
-            <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
-              <input
-                name="firstName"
-                type="text"
-                placeholder="Prénom"
-                onChange={handleFirstName}
-              />
-            </td>
-            <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
-              <input
-                name="email"
-                type="text"
-                placeholder="Email"
-                onChange={handleEmail}
-              />
-            </td>
-            <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
-              <input
-                name="address"
-                type="text"
-                placeholder="Adresse"
-                onChange={handleAddress}
-              />
-            </td>
-            <td className=" text-secondary md:text-2xl pt-0.5 h-23 lg:h-30 border-t-2 ">
-              <input
-                name="phoneNumber"
-                type="text"
-                placeholder="Téléphone"
-                onChange={handlePhoneNumber}
-              />
-            </td>
+            )}
 
-            <td className="text-center p-2 md:p-11 border-t-2">
-              <FaCheck onClick={handleAddUser} />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            <tr className="bg-block text-secondary">
+              <td className="w-12 text-secondary h-12 md:h-14 lg:h-16 border-t-2" />
+
+              <td className="w-32 text-secondary h-12 md:h-14 lg:h-16 border-t-2 px-2">
+                <div className="flex items-center h-full">
+                  <input
+                    name="lastName"
+                    type="text"
+                    placeholder="Nom"
+                    value={newUser.lastName}
+                    onChange={handleLastName}
+                    className="w-full h-full text-sm rounded bg-block text-secondary"
+                    required
+                  />
+                </div>
+              </td>
+
+              <td className="w-40 text-secondary h-12 md:h-14 lg:h-16 border-t-2 px-2">
+                <div className="flex items-center h-full">
+                  <input
+                    name="firstName"
+                    type="text"
+                    placeholder="Prénom"
+                    value={newUser.firstName}
+                    onChange={handleFirstName}
+                    className="w-full h-full text-sm rounded bg-block text-secondary"
+                    required
+                  />
+                </div>
+              </td>
+
+              <td className="w-60 text-secondary h-12 md:h-14 lg:h-16 border-t-2 px-2">
+                <div className="flex items-center h-full">
+                  <input
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    value={newUser.email}
+                    onChange={handleEmail}
+                    className="w-full h-full text-sm rounded bg-block text-secondary"
+                    required
+                  />
+                </div>
+              </td>
+
+              <td className="w-64 text-secondary h-12 md:h-14 lg:h-16 border-t-2 px-2">
+                <div className="flex items-center h-full">
+                  <textarea
+                    name="address"
+                    placeholder="Adresse"
+                    value={newUser.address}
+                    onChange={(e) => {
+                      handleAddress(
+                        e as React.ChangeEvent<HTMLTextAreaElement>,
+                      );
+                      e.currentTarget.style.height = "auto";
+                      e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+                    }}
+                    rows={1}
+                    className="w-full h-auto resize-none overflow-hidden text-sm rounded bg-block text-secondary placeholder:items-center flex items-center"
+                    required
+                  />
+                </div>
+              </td>
+
+              <td className="w-52 text-secondary h-12 md:h-14 lg:h-16 border-t-2 px-2">
+                <div className="flex items-center h-full">
+                  <input
+                    name="phoneNumber"
+                    type="text"
+                    placeholder="Téléphone"
+                    value={newUser.phoneNumber}
+                    onChange={handlePhoneNumber}
+                    className="w-full h-full text-sm rounded bg-block text-secondary"
+                    required
+                  />
+                </div>
+              </td>
+
+              <td className="border-t-2">
+                <div className="flex items-center justify-center h-full w-full">
+                  <FaCheck className="cursor-pointer" onClick={handleAddUser} />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {statusMessage && (
+        <div
+          className={`mt-3 text-sm text-center p-1 ${statusType === "error" ? "text-red-500" : "text-green-700"} rounded-xl`}
+        >
+          {statusMessage}
+        </div>
+      )}
     </>
   );
 }
