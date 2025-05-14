@@ -21,6 +21,10 @@ function Basket() {
 
   console.log(basket);
 
+  function handleRemoveAll() {
+    setBasket([]);
+  }
+
   function handleRemoveItem(id: number) {
     setBasket((prevBasket) => prevBasket.filter((item) => item.id !== id));
   }
@@ -33,6 +37,8 @@ function Basket() {
       ),
     );
   });
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [statusType, setStatusType] = useState<string>("");
 
   function handleOrder(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -48,13 +54,25 @@ function Basket() {
       localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
       localStorage.removeItem("newOrder");
       setBasket([]);
-      alert("Merci pour votre commande !");
+      setStatusMessage("✅ Merci pour votre commande !");
+      setStatusType("success");
     } else if (basket.length === 0) {
-      alert("Le panier est vide !");
+      setStatusMessage("❌ Le panier est vide !");
+      setStatusType("error");
     } else if (basket.length > 0 && !checkboxCGV.checked) {
-      alert("Veuillez accepter les conditions générales de ventes.");
+      setStatusMessage(
+        "❌ Veuillez accepter les conditions générales de ventes.",
+      );
+      setStatusType("error");
     }
   }
+
+  useEffect(() => {
+    if (statusMessage) {
+      const timer = setTimeout(() => setStatusMessage(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [statusMessage]);
 
   function handleAdd(product: Goodie) {
     const isInBasket = basket.some((item) => item.id === product.id);
@@ -121,7 +139,10 @@ function Basket() {
                 Montant TTC
               </th>
               <th className="bg-block rounded-tr-lg text-secondary md:text-2xl font-bold text-center pt-0.5 md:p-4 px-2 md:px-10 border-b-2">
-                <FaTrashCan />
+                <FaTrashCan
+                  className="cursor-pointer"
+                  onClick={() => handleRemoveAll()}
+                />
               </th>
             </tr>
           </thead>
@@ -145,7 +166,8 @@ function Basket() {
                         </p>
                         {product.price ? (
                           <p className="text-xs lg:text-base">
-                            <strong>Prix : </strong> {product.price} €
+                            <strong>Prix : </strong> {product.price.toFixed(2)}{" "}
+                            €
                           </p>
                         ) : null}
                       </div>
@@ -154,27 +176,30 @@ function Basket() {
                   <td className="text-center text-lg border-t-2">
                     <button
                       type="button"
-                      className="p-2 "
-                      onClick={() => handleAdd(product)}
+                      className="p-1 md:p-2 lg:p-3"
+                      onClick={() => handleLess(product)}
                     >
-                      <IoAddCircleOutline />
+                      <IoRemoveCircleOutline className="cursor-pointer" />
                     </button>
                     {product.quantity}
                     <button
                       type="button"
-                      className="p-2 "
-                      onClick={() => handleLess(product)}
+                      className="p-1 md:p-2 lg:p-3"
+                      onClick={() => handleAdd(product)}
                     >
-                      <IoRemoveCircleOutline />
+                      <IoAddCircleOutline className="cursor-pointer" />
                     </button>
                   </td>
 
-                  <td className="text-center text-lg border-t-2 fill-black ">
-                    {product.price * product.quantity} €
+                  <td className="text-center text border-t-2 fill-black ">
+                    {(product.price * product.quantity).toFixed(2)} €
                   </td>
 
                   <td className="text-center p-2 md:p-11 border-t-2">
-                    <FaTrashCan onClick={() => handleRemoveItem(product.id)} />
+                    <FaTrashCan
+                      className="cursor-pointer"
+                      onClick={() => handleRemoveItem(product.id)}
+                    />
                   </td>
                 </tr>
               ))
@@ -192,24 +217,31 @@ function Basket() {
 
       <section className="flex justify-end mt-5 w-full mx-auto max-w-[300px] md:max-w-[650px] lg:max-w-[800px] xl:max-w-[1000px]">
         <div className="border-4 text-secondary font-bold bg-block px-3 py-3 rounded-2xl">
-          Total TTC : {totalPrice ? totalPrice : "0"} €
+          Total TTC : {(totalPrice ?? 0).toFixed(2)} €
         </div>
       </section>
 
-      <section className="flex justify-end items-center mt-5 w-full mx-auto max-w-[300px] md:max-w-[650px] border-4 text-secondary font-bold bg-block px-3 py-3 rounded-2xl">
-        <div className="flex   ">
+      <section className="flex flex-col mt-5 w-full mx-auto max-w-[300px] md:max-w-[650px] border-4 text-secondary font-bold bg-block px-3 py-3 rounded-2xl">
+        <div className="flex items-center my-3">
           <input type="checkbox" id="checkboxCGV" className="mr-2" />
           <label htmlFor="checkboxCGV" className="text-xs mr-2 md:text-base">
             Je reconnais avoir lu et accepté les conditions générales de ventes.
           </label>
+          <button
+            type="submit"
+            className="bg-button px-4 rounded-full border-secondary border-3 font-semibold text-sm md:text-base ml-2"
+            onClick={handleOrder}
+          >
+            Valider la commande
+          </button>
         </div>
-        <button
-          type="submit"
-          className="bg-button px-4 rounded-full mb-3 mt-3 border-secondary border-3 font-semibold text-sm md:text-base"
-          onClick={handleOrder}
-        >
-          Valider la commande
-        </button>
+        {statusMessage && (
+          <div
+            className={`mt-3 font-semibold text-sm text-center ${statusType === "error" ? "text-red-500" : "text-green-700"} rounded-xl`}
+          >
+            {statusMessage}
+          </div>
+        )}
       </section>
     </div>
   );

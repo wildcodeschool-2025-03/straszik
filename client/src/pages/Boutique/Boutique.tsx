@@ -23,8 +23,25 @@ function Boutique() {
       .then((data) => setGoodies(data));
   }, []);
 
+  function isUserConnected() {
+    const userConnected = JSON.parse(
+      localStorage.getItem("userConnected") || "null",
+    );
+
+    if (!userConnected || Object.keys(userConnected).length === 0) {
+      alert("Veuillez vous connecter pour ajouter un produit au panier.");
+      return false;
+    }
+
+    return true;
+  }
+
   const handleBasket = (product: Goodie) => {
     const isInBasket = basket.some((item) => item.id === product.id);
+
+    if (!isUserConnected()) {
+      return;
+    }
 
     if (isInBasket) {
       const updatedBasket = basket.map((item) =>
@@ -56,16 +73,16 @@ function Boutique() {
             Supporte Stras'Zik avec des produits exclusifs
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
+          <div className="flex flex-col items-center text-secondary gap-10 rounded-md p-6 mx-auto mb-10 md:flex-row md:flex-wrap md:justify-center">
             {goodies.map((products) => (
               <div
                 key={products.id}
-                className="bg-block border-secondary border-4 rounded-2xl shadow-md p-2"
+                className="bg-block border-secondary border-4 rounded-2xl shadow-md p-2 w-[250px] min-h-[350px]"
               >
                 <img
                   src={products.image}
                   alt={products.name}
-                  className="w-70 h-70 object-cover"
+                  className="w-40 h-40 object-cover mx-auto"
                 />
                 <div className="flex flex-col items-center text-center">
                   <div>
@@ -76,14 +93,14 @@ function Boutique() {
                       {products.description}
                     </p>
                     <span className="text-xl font-semibold">
-                      {products.price} €
+                      {products.price.toFixed(2)} €
                     </span>
                   </div>
                   <motion.button
                     onClick={() => handleBasket(products)}
                     whileTap={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="bg-button hover:bg-button/50 p-2.5 px-4 rounded-full mb-3 mt-3 border-secondary border-3 font-semibold"
+                    className="bg-button hover:bg-button/50 p-2.5 px-4 rounded-full mb-3 mt-3 border-secondary border-3 font-semibold cursor-pointer"
                   >
                     Ajouter au panier
                   </motion.button>
