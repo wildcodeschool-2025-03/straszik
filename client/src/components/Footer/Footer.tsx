@@ -4,7 +4,7 @@ function Footer() {
   // Fonction pour gérer l'inscription à la newsletter et sauvegarder l'email dans le localStorage
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key === "Enter") {
-      e.preventDefault();
+      //e.preventDefault();
       const email = (e.target as HTMLInputElement).value;
       if (email) {
         const newsletterEmailList = JSON.parse(
