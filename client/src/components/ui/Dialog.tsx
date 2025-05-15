@@ -15,7 +15,7 @@ export function Dialog({ open, onOpenChange, children }: DialogProps) {
         <button
           type="button"
           onClick={onOpenChange}
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded flex justify-items-center hidden"
+          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded  justify-items-center hidden"
         >
           Sauvegarder
         </button>
@@ -34,4 +34,8 @@ export function DialogHeader({ children }: { children: ReactNode }) {
 
 export function DialogTitle({ children }: { children: ReactNode }) {
   return <h2>{children}</h2>;
+}
+
+export function DialogDescription({ children }: { children: ReactNode }) {
+  return <p>{children}</p>;
 }

@@ -1,7 +1,17 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
 import { useBasket } from "../../Context/BasketContext";
 import Header from "../../components/Header/Header";
+import { Button } from "../../components/ui/Button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "../../components/ui/Dialog";
 
 interface Goodie {
   id: number;
@@ -16,6 +26,7 @@ const apiGoodiesUrl = import.meta.env.VITE_API_GOODIES_URL;
 function Boutique() {
   const [goodies, setGoodies] = useState<Goodie[]>([]);
   const { basket, setBasket } = useBasket();
+  const [isLoginPopup, setIsLoginPopup] = useState(false);
 
   useEffect(() => {
     fetch(apiGoodiesUrl)
@@ -29,7 +40,7 @@ function Boutique() {
     );
 
     if (!userConnected || Object.keys(userConnected).length === 0) {
-      alert("Veuillez vous connecter pour ajouter un produit au panier.");
+      setIsLoginPopup(true);
       return false;
     }
 
@@ -60,6 +71,7 @@ function Boutique() {
         quantity: 1,
       };
       setBasket([...basket, newItem]);
+      toast.success(`${product.name} ajouté au panier !`);
     }
   };
 
@@ -110,6 +122,61 @@ function Boutique() {
           </div>
         </div>
       </section>
+
+      {/*pop-up connection*/}
+      <Dialog open={isLoginPopup} onOpenChange={() => setIsLoginPopup(false)}>
+        <DialogContent>
+          <DialogHeader>
+            <div className="text-center  gap-3 mb-4 text-secondary">
+              <DialogTitle>
+                <h2 className="mb-4">Veuillez vous connecter d'abord !</h2>
+              </DialogTitle>
+              <DialogDescription>
+                <p className="font-thin">
+                  Pour ajouter un article au panier, vous devez vous
+                  connecter/inscrire
+                </p>
+              </DialogDescription>
+            </div>
+          </DialogHeader>
+
+          <div className="flex justify-center  p-1 mx-10 bg-button rounded-xl border-2 border-secondary font-semibold">
+            <Link to="/log-in">
+              <motion.button
+                type="button"
+                onClick={() => {
+                  setIsLoginPopup(false);
+                }}
+                className=" px-5 py-2 rounded-lg cursor-pointer text-secondary"
+              >
+                Se connecter ou s'inscrire
+              </motion.button>
+            </Link>
+          </div>
+          <div className="flex justify-center pt-3 underline cursor-pointer">
+            <Button
+              type="button"
+              onClick={() => setIsLoginPopup(false)}
+              className="bg-gray-200 text-gray-700 px-5 py-2 rounded-lg hover:bg-gray-300  "
+            >
+              Annuler
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/*Alert ajouté au panier*/}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

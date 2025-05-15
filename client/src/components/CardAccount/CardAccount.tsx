@@ -10,8 +10,6 @@ import {
 import { Button } from "../ui/Button"; // Assure-toi d'importer Button de shadcn/ui
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/Dialog";
 
-const apiAccount = import.meta.env.VITE_API_ACCOUNT_URL;
-
 function CardAccount() {
   function handleDisconnect() {
     localStorage.setItem("userConnected", "{}");
@@ -124,7 +122,6 @@ function CardAccount() {
     );
     setIsApOpen(false);
   };
-
 
   // edition button
   const [editing, setEditing] = useState(false);
@@ -675,37 +672,6 @@ function CardAccount() {
           </motion.div>
         </DialogContent>
       </Dialog>
-
-      <div className="flex justify-center pt-2">
-        {!editing ? (
-          <motion.button
-            type="button"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 200 }}
-            onClick={() => setEditing(true)}
-            className="bg-button p-1.5 rounded-lg text-secondary"
-          >
-            Modifier mes Informations personnelles
-          </motion.button>
-        ) : (
-          <>
-            <button
-              type="button"
-              onClick={handleSave}
-              className="bg-green-600 p-1.5 rounded-lg mr-2"
-            >
-              Enregistrer
-            </button>
-            <button
-              type="button"
-              onClick={handleCancel}
-              className="bg-gray-400 p-1.5 rounded-lg"
-            >
-              Annuler
-            </button>
-          </>
-        )}
-      </div>
 
       <section className="flex flex-col items-center justify-center text-center text-secondary bg-block rounded-2xl border-3 border-secondary mx-auto mt-4 w-[300px] md:w-[500px] p-2 gap-4">
         <p className="font-bold lg:text-lg">Informations d'abonnement</p>
