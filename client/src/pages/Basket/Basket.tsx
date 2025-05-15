@@ -227,13 +227,17 @@ function Basket() {
 
       <section className="flex flex-col mt-5 w-full mx-auto max-w-[300px] md:max-w-[650px] border-4 text-secondary font-bold bg-block px-3 py-3 rounded-2xl">
         <div className="flex items-center my-3">
-          <input type="checkbox" id="checkboxCGV" className="mr-2" />
-          <label htmlFor="checkboxCGV" className="text-xs mr-2 md:text-base">
+          <input
+            type="checkbox"
+            id="checkboxCGV"
+            className="mr-2 cursor-pointer"
+          />
+          <label htmlFor="checkboxCGV" className="text-xs mr-2 md:text-base ">
             Je reconnais avoir lu et accepté les conditions générales de ventes.
           </label>
           <button
             type="submit"
-            className="bg-button px-4 rounded-full border-secondary border-3 font-semibold text-sm md:text-base ml-2"
+            className="bg-button hover:bg-button/50 cursor-pointer px-4 rounded-full border-secondary border-3 font-semibold text-sm md:text-base ml-2"
             onClick={handleOrder}
           >
             Valider la commande
