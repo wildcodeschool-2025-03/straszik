@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { MdAccountCircle } from "react-icons/md";
 import { PiBasketBold } from "react-icons/pi";
 import { Link } from "react-router";
+import adminAccounts from "../../../public/adminAccounts.json";
 import photogroupe from "../../../public/photogroupe.png";
 import { useBasket } from "../../Context/BasketContext";
 import AlbumHome from "../../components/AlbumHome/AlbumHome";
 import DateHome from "../../components/EventsHome/EventsHome";
 import GoodiesHome from "../../components/GoodiesHome/GoodiesHome";
 import { PhotoHotspots } from "../../components/PhotoHotspots/PhotoHotspots";
-import adminAccounts from "../../data/adminAccounts.json";
 
 const apiEventsUrl = import.meta.env.VITE_API_EVENTS_URL;
 const apiDiscographiesUrl = import.meta.env.VITE_API_DISCOGRAPHIE_URL;

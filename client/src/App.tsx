@@ -8,12 +8,14 @@ function App() {
   const location = useLocation();
 
   return (
-    <BasketProvider>
-      <main className="min-h-screen">
-        <Outlet />
-      </main>
-      {location.pathname !== "/" && <Footer />}
-    </BasketProvider>
+    <div>
+      <BasketProvider>
+        <main className="min-h-screen ">
+          <Outlet />
+        </main>
+        {location.pathname !== "/" && <Footer />}
+      </BasketProvider>
+    </div>
   );
 }
 

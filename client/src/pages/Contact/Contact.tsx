@@ -1,6 +1,7 @@
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import Header from "../../components/Header/Header";
 
 const serviceId = import.meta.env.VITE_YOUR_SERVICE_ID;
@@ -9,7 +10,7 @@ const publicKey = import.meta.env.VITE_YOUR_PUBLIC_KEY;
 
 function Contact() {
   const form = useRef<HTMLFormElement>(null);
-  const [mailStatus, setMailStatus] = useState("");
+  const [mailStatus] = useState("");
 
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,13 +18,11 @@ function Contact() {
     if (form.current) {
       emailjs.sendForm(serviceId, templateId, form.current, publicKey).then(
         () => {
-          setMailStatus("Message envoyé !");
+          toast.success("Message envoyé !");
           console.log("SUCCESS!");
         },
         (error) => {
-          setMailStatus(
-            "Erreur lors de l'envoi du message. Veuillez réessayer.",
-          );
+          toast.error("Erreur lors de l'envoi du message. Veuillez réessayer.");
           console.error("Email sending error:", error);
         },
       );
@@ -79,7 +78,7 @@ function Contact() {
         <p className="text-secondary font-bold">{mailStatus}</p>
         <button
           type="submit"
-          className="hover:text-white font-extrabold bg-button text-center text-base p-2 rounded-2xl shadow-2xl w-36 self-end md:justify-self-end h-10"
+          className="hover:text-white font-extrabold bg-button text-center text-base p-2 rounded-2xl shadow-2xl w-36 self-end md:justify-self-end h-10 cursor-pointer"
         >
           Envoyer
         </button>
@@ -136,6 +135,18 @@ function Contact() {
           </div>
         </article>
       </section>
+      {/*Alert envoye*/}
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

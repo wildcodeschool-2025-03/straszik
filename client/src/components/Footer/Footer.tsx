@@ -1,17 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { Link } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
 
 function Footer() {
-  const [statusMessage, setStatusMessage] = useState<string | null>(null);
-  const [statusType, setStatusType] = useState<string>("");
   const emailInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (statusMessage) {
-      const timer = setTimeout(() => setStatusMessage(null), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [statusMessage]);
 
   // Fonction pour gérer l'inscription à la newsletter et sauvegarder l'email dans le localStorage
   function handleKeyDown(e: React.KeyboardEvent) {
@@ -28,17 +20,16 @@ function Footer() {
             "newsletterEmailList",
             JSON.stringify(newsletterEmailList),
           );
-          setStatusMessage(
-            `✅ Votre inscription à notre newsletter a bien été enregistrée avec l'adresse email suivante : ${email}`,
+          toast.success(
+            `Votre inscription à notre newsletter a bien été enregistrée avec l'adresse email suivante : ${email}`,
           );
-          setStatusType("success");
+
           localStorage.setItem("newsletterEmail", email);
           if (emailInputRef.current) emailInputRef.current.value = "";
         } else {
-          setStatusMessage(
-            `❌ Cette adresse email est déjà inscrite à notre newsletter : ${email}`,
+          toast.error(
+            `Cette adresse email est déjà inscrite à notre newsletter : ${email}`,
           );
-          setStatusType("error");
           if (emailInputRef.current) emailInputRef.current.value = "";
         }
       }
@@ -58,13 +49,6 @@ function Footer() {
           onKeyDown={handleKeyDown}
         />
       </div>
-      {statusMessage && (
-        <div
-          className={`mt-3 text-sm text-center p-1 bg-white ${statusType === "error" ? "text-red-500" : "text-green-700"} rounded-md`}
-        >
-          {statusMessage}
-        </div>
-      )}
 
       <section className="p-2 flex flex-row md:items-center w-full justify-between items-end">
         <div className="flex items-center gap-1 md:gap-2 w-30 md:w-50">
@@ -115,6 +99,17 @@ function Footer() {
           </p>
         </div>
       </section>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </section>
   );
 }
