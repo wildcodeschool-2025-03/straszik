@@ -1,8 +1,6 @@
-
 import { motion } from "framer-motion";
 import { useState } from "react";
 import type { ChangeEvent } from "react";
-
 import {
   FaApplePay,
   FaCcMastercard,
@@ -12,12 +10,7 @@ import {
 import { Button } from "../ui/Button"; // Assure-toi d'importer Button de shadcn/ui
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/Dialog";
 
-
-// Removed unused interface declaration
-
-// Removed unused apiAccount variable
-
-
+const apiAccount = import.meta.env.VITE_API_ACCOUNT_URL;
 
 function CardAccount() {
   function handleDisconnect() {
@@ -142,13 +135,11 @@ function CardAccount() {
     email: userConnected.email || "",
     address: userConnected.address || "",
     password: "",
-
   });
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-
   }
 
   // Alerte de confirmation
@@ -183,7 +174,6 @@ function CardAccount() {
       email: userConnected.email || "",
       address: userConnected.address || "",
       password: "",
-
     });
     setEditing(false);
   }
@@ -232,7 +222,6 @@ function CardAccount() {
         <h1 className="text-secondary text-4xl font-extrabold text-center md:text-5xl mt-10 mb-14">
           MON COMPTE
         </h1>
-       
       </section>
 
       <section className="md:grid md:grid-col-2 md:grid-rows-[40px_40px_40px_40px_40px] md:justify-center flex flex-col items-center gap-4 md:gap-4 mx-auto">
@@ -331,36 +320,36 @@ function CardAccount() {
           </div>
         </div>
       </section>
-       <div className="flex justify-center pt-2">
-          {!editing ? (
-            <motion.button
+      <div className="flex justify-center pt-2">
+        {!editing ? (
+          <motion.button
+            type="button"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 200 }}
+            onClick={() => setEditing(true)}
+            className="bg-button p-1.5 rounded-lg text-secondary"
+          >
+            Modifier mes Informations personnelles
+          </motion.button>
+        ) : (
+          <>
+            <button
               type="button"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 200 }}
-              onClick={() => setEditing(true)}
-              className="bg-button p-1.5 rounded-lg text-secondary"
+              onClick={handleSave}
+              className="bg-green-600 p-1.5 rounded-lg mr-2"
             >
-              Modifier mes Informations personnelles
-            </motion.button>
-          ) : (
-            <>
-              <button
-                type="button"
-                onClick={handleSave}
-                className="bg-green-600 p-1.5 rounded-lg mr-2"
-              >
-                Enregistrer
-              </button>
-              <button
-                type="button"
-                onClick={handleCancel}
-                className="bg-gray-400 p-1.5 rounded-lg"
-              >
-                Annuler
-              </button>
-            </>
-          )}
-        </div>
+              Enregistrer
+            </button>
+            <button
+              type="button"
+              onClick={handleCancel}
+              className="bg-gray-400 p-1.5 rounded-lg"
+            >
+              Annuler
+            </button>
+          </>
+        )}
+      </div>
 
       <Dialog open={isPopupOpen} onOpenChange={togglePopup}>
         <DialogContent>
