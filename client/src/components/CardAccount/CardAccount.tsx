@@ -1,6 +1,8 @@
+
 import { motion } from "framer-motion";
 import { useState } from "react";
 import type { ChangeEvent } from "react";
+
 import {
   FaApplePay,
   FaCcMastercard,
@@ -10,9 +12,12 @@ import {
 import { Button } from "../ui/Button"; // Assure-toi d'importer Button de shadcn/ui
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/Dialog";
 
+
 // Removed unused interface declaration
 
 // Removed unused apiAccount variable
+
+
 
 function CardAccount() {
   function handleDisconnect() {
@@ -127,6 +132,7 @@ function CardAccount() {
     setIsApOpen(false);
   };
 
+
   // edition button
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({
@@ -136,11 +142,13 @@ function CardAccount() {
     email: userConnected.email || "",
     address: userConnected.address || "",
     password: "",
+
   });
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+
   }
 
   // Alerte de confirmation
@@ -155,6 +163,7 @@ function CardAccount() {
       id: number;
     }[];
     const idx = list.findIndex((u) => u.id === updated.id);
+
     if (idx !== -1) {
       list[idx] = { ...list[idx], ...formData };
       localStorage.setItem("userList", JSON.stringify(list));
@@ -174,6 +183,7 @@ function CardAccount() {
       email: userConnected.email || "",
       address: userConnected.address || "",
       password: "",
+
     });
     setEditing(false);
   }
@@ -217,10 +227,12 @@ function CardAccount() {
           Vos informations ont bien été mises à jour !
         </div>
       )}
+
       <section className="mb-12 ">
         <h1 className="text-secondary text-4xl font-extrabold text-center md:text-5xl mt-10 mb-14">
           MON COMPTE
         </h1>
+       
       </section>
 
       <section className="md:grid md:grid-col-2 md:grid-rows-[40px_40px_40px_40px_40px] md:justify-center flex flex-col items-center gap-4 md:gap-4 mx-auto">
@@ -319,6 +331,36 @@ function CardAccount() {
           </div>
         </div>
       </section>
+       <div className="flex justify-center pt-2">
+          {!editing ? (
+            <motion.button
+              type="button"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 200 }}
+              onClick={() => setEditing(true)}
+              className="bg-button p-1.5 rounded-lg text-secondary"
+            >
+              Modifier mes Informations personnelles
+            </motion.button>
+          ) : (
+            <>
+              <button
+                type="button"
+                onClick={handleSave}
+                className="bg-green-600 p-1.5 rounded-lg mr-2"
+              >
+                Enregistrer
+              </button>
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="bg-gray-400 p-1.5 rounded-lg"
+              >
+                Annuler
+              </button>
+            </>
+          )}
+        </div>
 
       <Dialog open={isPopupOpen} onOpenChange={togglePopup}>
         <DialogContent>
