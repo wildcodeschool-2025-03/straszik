@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
 
 interface AdminAccount {
   email: string;
@@ -11,7 +13,7 @@ function LogInAccount() {
   const [adminAccounts, setAdminAccounts] = useState<AdminAccount[]>([]);
 
   useEffect(() => {
-    fetch("/src/data/adminAccounts.json")
+    fetch("/adminAccounts.json")
       .then((response) => response.json())
       .then((data) => {
         setAdminAccounts(data);
@@ -31,7 +33,7 @@ function LogInAccount() {
     );
     if (admin) {
       if (admin.password !== passwordInput) {
-        alert("Mot de passe incorrect");
+        toast.error("Mot de passe incorrect");
         return;
       }
       localStorage.setItem("userConnected", JSON.stringify(admin));
@@ -44,7 +46,7 @@ function LogInAccount() {
     );
     if (user) {
       if (user.password !== passwordInput) {
-        alert("Mot de passe incorrect");
+        toast.error("Mot de passe incorrect");
         return;
       }
       localStorage.setItem("userConnected", JSON.stringify(user));
@@ -52,7 +54,7 @@ function LogInAccount() {
       return;
     }
 
-    alert("Aucun compte n'est associé à cette adresse e-mail");
+    toast.warn("Aucun compte n'est associé à cette adresse e-mail");
     return;
   }
 
@@ -102,6 +104,17 @@ function LogInAccount() {
             </a>
           </div>
         </form>
+        <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       </div>
     </>
   );

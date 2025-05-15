@@ -285,14 +285,14 @@ function CardAccount() {
             Moyen de paiement
           </h2>
           <div className="flex flex-row justify-center mt-4 md:mt-1 md:gap-2 gap-4 md:grid md:grid-cols-[100px_100px] md:justify-items-center">
+
+             {/* Visa */}
             <Button onClick={togglePopup} type="button" className="bg-black">
               <FaCcVisa
                 className="text-blue-600 w-12 h-12 hover:scale-90"
                 size={30}
               />
             </Button>
-            {/* {savedVisa && <FaEye onClick={togglePopup} className="cursor-pointer text-blue-500 w-12 h-12 hover:scale-90" size={30} />} */}
-
             {/* MasterCard */}
             <Button onClick={toggleMc} type="button" className="bg-black">
               <FaCcMastercard
@@ -317,7 +317,7 @@ function CardAccount() {
           </div>
         </div>
       </section>
-      <div className="flex justify-center pt-2">
+      <div className="flex justify-center pt-4 pb-6">
         {!editing ? (
           <motion.button
             type="button"
@@ -692,7 +692,7 @@ function CardAccount() {
       </section>
 
       {/* Section Historique */}
-      <section className="flex flex-col items-center justify-center text-center text-secondary bg-block rounded-2xl border-3 border-secondary mx-auto mt-4 w-[300px] md:w-[900px] p-2 gap-4">
+      <section className="flex flex-col items-center justify-center text-center text-secondary bg-block rounded-2xl border-3 border-secondary mx-auto mt-14 w-[300px] md:w-[900px] p-2 gap-4">
         <h2 className="font-bold lg:text-lg">Historique de commandes</h2>
         <section className="flex flex-wrap justify-center gap-6 mt-2">
           {(historyToMap as OrderInterface[][]).length >= 0 ? (

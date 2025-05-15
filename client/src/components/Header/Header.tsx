@@ -3,7 +3,7 @@ import { MdAccountCircle } from "react-icons/md";
 import { PiBasketBold } from "react-icons/pi";
 import { Link } from "react-router";
 import { useBasket } from "../../Context/BasketContext";
-import adminAccounts from "../../data/adminAccounts.json";
+import adminAccounts from "../../../public/adminAccounts.json";
 
 function Header() {
   const { basket } = useBasket();

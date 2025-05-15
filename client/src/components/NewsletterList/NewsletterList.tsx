@@ -136,7 +136,7 @@ function NewsletterList() {
         </table>
       </div>
 
-      <div className="w-full max-w-[800px] mx-auto mt-4 flex items-center justify-end">
+      <div className="w-full max-w-[250px] md:max-w-[400px] lg:max-w-[600px] xl:max-w-[800px] mx-auto mt-4 flex items-center justify-end">
         <div
           className={`text-center font-semibold text-sm rounded-xl ${
             statusType === "error" ? "text-red-500" : "text-green-700"

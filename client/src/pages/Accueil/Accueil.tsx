@@ -8,7 +8,7 @@ import AlbumHome from "../../components/AlbumHome/AlbumHome";
 import DateHome from "../../components/EventsHome/EventsHome";
 import GoodiesHome from "../../components/GoodiesHome/GoodiesHome";
 import { PhotoHotspots } from "../../components/PhotoHotspots/PhotoHotspots";
-import adminAccounts from "../../data/adminAccounts.json";
+import adminAccounts from "../../../public/adminAccounts.json";
 
 const apiEventsUrl = import.meta.env.VITE_API_EVENTS_URL;
 const apiDiscographiesUrl = import.meta.env.VITE_API_DISCOGRAPHIE_URL;
