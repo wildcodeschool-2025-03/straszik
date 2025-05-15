@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import type { ChangeEvent } from "react";
-
 import {
   FaApplePay,
   FaCcMastercard,
@@ -10,10 +9,6 @@ import {
 } from "react-icons/fa";
 import { Button } from "../ui/Button"; // Assure-toi d'importer Button de shadcn/ui
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/Dialog";
-
-// Removed unused interface declaration
-
-// Removed unused apiAccount variable
 
 function CardAccount() {
   function handleDisconnect() {
