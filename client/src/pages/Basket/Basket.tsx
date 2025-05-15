@@ -19,8 +19,6 @@ function Basket() {
 
   const { basket, setBasket } = useBasket();
 
-  console.log(basket);
-
   function handleRemoveAll() {
     setBasket([]);
   }
@@ -39,6 +37,9 @@ function Basket() {
   });
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [statusType, setStatusType] = useState<string>("");
+  const userConnected = JSON.parse(
+    localStorage.getItem("userConnected") || "{}",
+  );
 
   function handleOrder(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -47,11 +48,13 @@ function Basket() {
       "checkboxCGV",
     ) as HTMLInputElement;
     if (basket.length > 0 && checkboxCGV.checked) {
-      const orderHistory = JSON.parse(
-        localStorage.getItem("orderHistory") || "[]",
-      );
+      const ordersKey = `orderHistory_${userConnected.email}`;
+      // Récupère l'historique existant ou un tableau vide
+      const orderHistory = JSON.parse(localStorage.getItem(ordersKey) || "[]");
+      // Ajoute la nouvelle commande (basket) à l'historique
       orderHistory.push(basket);
-      localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
+      // Sauvegarde l'historique mis à jour
+      localStorage.setItem(ordersKey, JSON.stringify(orderHistory));
       localStorage.removeItem("newOrder");
       setBasket([]);
       setStatusMessage("✅ Merci pour votre commande !");
