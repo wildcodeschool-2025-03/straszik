@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
-
 interface AdminAccount {
   email: string;
   password: string;
@@ -105,16 +104,16 @@ function LogInAccount() {
           </div>
         </form>
         <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </div>
     </>
   );

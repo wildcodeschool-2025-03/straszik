@@ -2,12 +2,8 @@ import { useRef } from "react";
 import { Link } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 
-
 function Footer() {
-  
   const emailInputRef = useRef<HTMLInputElement>(null);
-
- 
 
   // Fonction pour gérer l'inscription à la newsletter et sauvegarder l'email dans le localStorage
   function handleKeyDown(e: React.KeyboardEvent) {
@@ -27,7 +23,7 @@ function Footer() {
           toast.success(
             `Votre inscription à notre newsletter a bien été enregistrée avec l'adresse email suivante : ${email}`,
           );
-          
+
           localStorage.setItem("newsletterEmail", email);
           if (emailInputRef.current) emailInputRef.current.value = "";
         } else {
@@ -53,7 +49,6 @@ function Footer() {
           onKeyDown={handleKeyDown}
         />
       </div>
-      
 
       <section className="p-2 flex flex-row md:items-center w-full justify-between items-end">
         <div className="flex items-center gap-1 md:gap-2 w-30 md:w-50">
@@ -114,9 +109,8 @@ function Footer() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-/>
+      />
     </section>
-    
   );
 }
 

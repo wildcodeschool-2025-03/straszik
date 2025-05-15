@@ -2,8 +2,8 @@ import { useState } from "react";
 import { MdAccountCircle } from "react-icons/md";
 import { PiBasketBold } from "react-icons/pi";
 import { Link } from "react-router";
-import { useBasket } from "../../Context/BasketContext";
 import adminAccounts from "../../../public/adminAccounts.json";
+import { useBasket } from "../../Context/BasketContext";
 
 function Header() {
   const { basket } = useBasket();

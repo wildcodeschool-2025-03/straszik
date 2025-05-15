@@ -1,9 +1,8 @@
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
 import { useState } from "react";
-import Header from "../../components/Header/Header";
 import { ToastContainer, toast } from "react-toastify";
-
+import Header from "../../components/Header/Header";
 
 const serviceId = import.meta.env.VITE_YOUR_SERVICE_ID;
 const templateId = import.meta.env.VITE_YOUR_TEMPLATE_ID;
@@ -23,9 +22,7 @@ function Contact() {
           console.log("SUCCESS!");
         },
         (error) => {
-          toast.error(
-            "Erreur lors de l'envoi du message. Veuillez réessayer.",
-          );
+          toast.error("Erreur lors de l'envoi du message. Veuillez réessayer.");
           console.error("Email sending error:", error);
         },
       );

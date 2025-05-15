@@ -285,8 +285,7 @@ function CardAccount() {
             Moyen de paiement
           </h2>
           <div className="flex flex-row justify-center mt-4 md:mt-1 md:gap-2 gap-4 md:grid md:grid-cols-[100px_100px] md:justify-items-center">
-
-             {/* Visa */}
+            {/* Visa */}
             <Button onClick={togglePopup} type="button" className="bg-black">
               <FaCcVisa
                 className="text-blue-600 w-12 h-12 hover:scale-90"
