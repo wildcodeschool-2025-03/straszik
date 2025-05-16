@@ -75,6 +75,14 @@ function UserList() {
   }
 
   function handleAddUser() {
+    const regex = /\S+@\S+\.\S+/;
+
+    if (!regex.test(newUser.email)) {
+      setStatusMessage("❌ Veuillez entrer une adresse email valide");
+      setStatusType("error");
+      return;
+    }
+
     if (
       newUser.email === "" ||
       newUser.firstName === "" ||

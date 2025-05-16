@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from "react-toastify";
+
 interface UserInterface {
   id: number;
   lastName: string;
@@ -30,6 +32,12 @@ function SignIn() {
     e.preventDefault();
     console.log(user);
     const exists = userList.some((u) => u.email === user.email);
+    const regex = /\S+@\S+\.\S+/;
+
+    if (!regex.test(user.email)) {
+      toast.error("Veuillez entrer une adresse email valide");
+      return;
+    }
 
     if (!exists) {
       idCount++;
@@ -42,7 +50,7 @@ function SignIn() {
       localStorage.setItem("userConnected", JSON.stringify(userConnected));
       window.location.href = "./compte";
     } else {
-      alert(
+      toast.error(
         "Un compte existe déjà avec cette adresse email.\nVeuillez en saisir une autre ou vous connecter à votre compte.",
       );
     }
@@ -136,6 +144,18 @@ function SignIn() {
           </div>
         </form>
       </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

@@ -15,25 +15,36 @@ function NewsletterList() {
   const [newEmailInput, setNewEmailInput] = useState("");
 
   function handleAddUserNewsletter() {
-    const newEmail = newEmailInput;
-    const newEmailList = [...newsLetterList, newEmail];
+    const newEmail = newEmailInput.trim(); // On retire les espaces superflus
+    const regex = /\S+@\S+\.\S+/;
 
     if (newEmail === "") {
       setStatusMessage("❌ Veuillez entrer un email !");
       setStatusType("error");
       setNewEmailInput("");
-    } else if (newsLetterList.includes(newEmail)) {
+      return;
+    }
+
+    if (!regex.test(newEmail)) {
+      setStatusMessage("❌ Veuillez entrer un email valide !");
+      setStatusType("error");
+      return;
+    }
+
+    if (newsLetterList.includes(newEmail)) {
       setStatusMessage("❌ Cet email est déjà inscrit à la newsletter !");
       setStatusType("error");
       setNewEmailInput("");
-    } else {
-      localStorage.setItem("newsletterEmailList", JSON.stringify(newEmailList));
-      setNewsLetterList(newEmailList);
-      setNewEmailInput("");
-      setStatusMessage("✅ Email ajouté à la newsletter !");
-      setStatusType("success");
-      setAddEmailRow(false);
+      return;
     }
+
+    const newEmailList = [...newsLetterList, newEmail];
+    localStorage.setItem("newsletterEmailList", JSON.stringify(newEmailList));
+    setNewsLetterList(newEmailList);
+    setNewEmailInput("");
+    setStatusMessage("✅ Email ajouté à la newsletter !");
+    setStatusType("success");
+    setAddEmailRow(false);
   }
 
   useEffect(() => {
