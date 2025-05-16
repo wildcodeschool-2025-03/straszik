@@ -19,7 +19,7 @@ function Admin() {
       <section className="flex flex-col items-center gap-1 mt-16">
         <button
           onClick={handleDisconnect}
-          className="bg-red-600 hover:bg-red-700 text-xl rounded-xl p-2 w-52 mb-4 font-semibold hover:scale-110"
+          className="bg-red-600 cursor-pointer hover:bg-red-700 text-xl rounded-xl p-2 w-52 mb-4 font-semibold hover:scale-110"
           type="submit"
         >
           Se déconnecter
