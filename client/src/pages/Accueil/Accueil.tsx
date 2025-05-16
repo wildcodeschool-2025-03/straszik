@@ -131,7 +131,10 @@ function Accueil() {
   useEffect(() => {
     fetch(apiGoodiesUrl)
       .then((res) => res.json())
-      .then((data) => setGoodies(data));
+      .then((data) => {
+        console.log("data", data);
+        setGoodies(data);
+      });
   }, []);
 
   return (
