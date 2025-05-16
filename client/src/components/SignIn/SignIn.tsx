@@ -30,6 +30,12 @@ function SignIn() {
     e.preventDefault();
     console.log(user);
     const exists = userList.some((u) => u.email === user.email);
+    const regex = /\S+@\S+\.\S+/;
+
+    if (!regex.test(user.email)) {
+      alert("Veuillez entrer une adresse email valide");
+      return;
+    }
 
     if (!exists) {
       idCount++;

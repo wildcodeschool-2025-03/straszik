@@ -26,6 +26,11 @@ function LogInAccount() {
     e.preventDefault();
     const emailInput = (e.currentTarget[0] as HTMLInputElement).value;
     const passwordInput = (e.currentTarget[1] as HTMLInputElement).value;
+    const regex = /\S+@\S+\.\S+/;
+    if (!regex.test(emailInput)) {
+      toast.error("Veuillez entrer une adresse email valide");
+      return;
+    }
 
     const admin = adminAccounts.find(
       (admin: { email: string }) => admin.email === emailInput,
