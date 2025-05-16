@@ -7,7 +7,8 @@ import {
   FaCcPaypal,
   FaCcVisa,
 } from "react-icons/fa";
-import { Button } from "../ui/Button"; // Assure-toi d'importer Button de shadcn/ui
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Button } from "../ui/Button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/Dialog";
 
 function CardAccount() {
@@ -131,13 +132,19 @@ function CardAccount() {
     phoneNumber: userConnected.phoneNumber || "",
     email: userConnected.email || "",
     address: userConnected.address || "",
-    password: "",
+    password: userConnected.password || "",
   });
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
+
+  // Afficher/Masquer le mot de passe
+  const [showPassword, setShowPassword] = useState(false);
+  const toggleShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   // Alerte de confirmation
   const [showAlert, setShowAlert] = useState(false);
@@ -161,6 +168,7 @@ function CardAccount() {
     // afficher l’alerte et la masquer au bout de 3s
     setShowAlert(true);
     setTimeout(() => setShowAlert(false), 3000);
+    setShowPassword(false);
   }
 
   function handleCancel() {
@@ -170,7 +178,7 @@ function CardAccount() {
       phoneNumber: userConnected.phoneNumber || "",
       email: userConnected.email || "",
       address: userConnected.address || "",
-      password: "",
+      password: userConnected.password || "",
     });
     setEditing(false);
   }
@@ -270,14 +278,23 @@ function CardAccount() {
 
         {/* Mdp a l'édition */}
         {editing && (
-          <input
-            name="password"
-            type="password"
-            placeholder="Mot de passe"
-            value={formData.password}
-            onChange={handleChange}
-            className="bg-block w-[300px] text-secondary rounded-lg text-center md:h-full h-24 border-3 border-secondary lg:text-lg md:col-span-2 md:w-full"
-          />
+          <div className="flex flex-col items-center justify-center gap-1 md:col-span-2">
+            <input
+              name="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Mot de passe"
+              value={formData.password}
+              onChange={handleChange}
+              className="bg-block w-[300px] text-secondary rounded-lg text-center md:h-full h-24 border-3 border-secondary lg:text-lg md:col-span-2 md:w-full"
+            />
+            <button
+              type="button"
+              onClick={toggleShowPassword}
+              className=" text-gray-500 hover:text-gray-700"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
         )}
 
         <div className=" flex flex-col bg-block items-center justify-center text-secondary rounded-xl text-center border-3 border-secondary  md:col-start-2 md:row-span-3 md:-row-start-6 h-full p-2 w-[300px] lg:w-[400px] ">
@@ -288,58 +305,58 @@ function CardAccount() {
             {/* Visa */}
             <Button onClick={togglePopup} type="button" className="bg-black">
               <FaCcVisa
-                className="text-blue-600 w-12 h-12 hover:scale-90"
+                className="text-blue-600 w-12 h-12 hover:scale-90 cursor-pointer"
                 size={30}
               />
             </Button>
             {/* MasterCard */}
             <Button onClick={toggleMc} type="button" className="bg-black">
               <FaCcMastercard
-                className="text-red-500 w-12 h-12 hover:scale-90"
+                className="text-red-500 w-12 h-12 hover:scale-90 cursor-pointer"
                 size={30}
               />
             </Button>
             {/* PayPal */}
             <Button onClick={togglePp} type="button" className="bg-black">
               <FaCcPaypal
-                className="text-blue-800 w-12 h-12 hover:scale-90"
+                className="text-blue-800 w-12 h-12 hover:scale-90 cursor-pointer"
                 size={30}
               />
             </Button>
             {/* Apple Pay */}
             <Button onClick={toggleAp} type="button" className="bg-black">
               <FaApplePay
-                className="text-gray-800 w-12 h-12 hover:scale-90"
+                className="text-gray-800 w-12 h-12 hover:scale-90 cursor-pointer"
                 size={30}
               />
             </Button>
           </div>
         </div>
       </section>
-      <div className="flex justify-center pt-4 pb-6">
+      <div className="flex justify-center pt-4 pb-8">
         {!editing ? (
           <motion.button
             type="button"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 200 }}
             onClick={() => setEditing(true)}
-            className="bg-button p-1.5 rounded-lg text-secondary"
+            className="bg-button p-1.5 rounded-lg text-secondary cursor-pointer text-sm lg:text-base"
           >
-            Modifier mes Informations personnelles
+            Modifier mes informations personnelles
           </motion.button>
         ) : (
           <>
             <button
               type="button"
               onClick={handleSave}
-              className="bg-green-600 p-1.5 rounded-lg mr-2"
+              className="bg-green-600 p-1.5 rounded-lg mr-2 cursor-pointer"
             >
               Enregistrer
             </button>
             <button
               type="button"
               onClick={handleCancel}
-              className="bg-gray-400 p-1.5 rounded-lg"
+              className="bg-gray-400 p-1.5 rounded-lg cursor-pointer"
             >
               Annuler
             </button>
@@ -428,14 +445,14 @@ function CardAccount() {
                 <Button
                   type="button"
                   onClick={handleCardSubmit}
-                  className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700"
+                  className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 cursor-pointer"
                 >
                   Confirmer
                 </Button>
                 <Button
                   type="button"
                   onClick={togglePopup}
-                  className="bg-gray-200 text-gray-700 px-5 py-2 rounded-lg hover:bg-gray-300"
+                  className="bg-gray-200 text-gray-700 px-5 py-2 rounded-lg hover:bg-gray-300 cursor-pointer"
                 >
                   Annuler
                 </Button>
@@ -521,14 +538,14 @@ function CardAccount() {
                 <Button
                   type="button"
                   onClick={handleMcSubmit}
-                  className="bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600"
+                  className="bg-red-500 cursor-pointer text-white px-5 py-2 rounded-lg hover:bg-red-600"
                 >
                   Confirmer
                 </Button>
                 <Button
                   type="button"
                   onClick={toggleMc}
-                  className="bg-gray-200 text-gray-700 px-5 py-2 rounded-lg hover:bg-gray-300"
+                  className="bg-gray-200 cursor-pointer text-gray-700 px-5 py-2 rounded-lg hover:bg-gray-300"
                 >
                   Annuler
                 </Button>
@@ -549,7 +566,7 @@ function CardAccount() {
             <button
               type="button"
               onClick={togglePp}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              className="absolute cursor-pointer top-4 right-4 text-gray-500 hover:text-gray-700"
             >
               ✕
             </button>
@@ -588,14 +605,14 @@ function CardAccount() {
                 <Button
                   type="button"
                   onClick={handlePpSubmit}
-                  className="bg-blue-800 text-white px-5 py-2 rounded-lg hover:bg-blue-900"
+                  className="bg-blue-800 cursor-pointer text-white px-5 py-2 rounded-lg hover:bg-blue-900"
                 >
                   Se connecter
                 </Button>
                 <Button
                   type="button"
                   onClick={togglePp}
-                  className="bg-gray-200 text-gray-700 px-5 py-2 rounded-lg hover:bg-gray-300"
+                  className="bg-gray-200 cursor-pointer text-gray-700 px-5 py-2 rounded-lg hover:bg-gray-300"
                 >
                   Annuler
                 </Button>
@@ -655,14 +672,14 @@ function CardAccount() {
                 <Button
                   type="button"
                   onClick={handleApSubmit}
-                  className="bg-gray-800 text-white px-5 py-2 rounded-lg hover:bg-black"
+                  className="bg-gray-800 cursor-pointer text-white px-5 py-2 rounded-lg hover:bg-black"
                 >
                   Se connecter
                 </Button>
                 <Button
                   type="button"
                   onClick={toggleAp}
-                  className="bg-gray-200 text-gray-700 px-5 py-2 rounded-lg hover:bg-gray-300"
+                  className="bg-gray-200 cursor-pointer text-gray-700 px-5 py-2 rounded-lg hover:bg-gray-300"
                 >
                   Annuler
                 </Button>
@@ -682,7 +699,7 @@ function CardAccount() {
         <button
           type="submit"
           onClick={handleDesabonned}
-          className="bg-button rounded-full border-secondary border-3 font-semibold text-sm lg:text-base p-1 w-30 md:w-50"
+          className="bg-button hover:bg-button/50 cursor-pointer rounded-full border-secondary border-3 font-semibold text-sm lg:text-base p-1 w-30 md:w-50"
         >
           {newsletterEmailList?.includes(userConnected.email)
             ? "Se désabonner"
@@ -741,7 +758,7 @@ function CardAccount() {
 
       <section className="flex flex-col items-center gap-1 mt-4">
         <button
-          className="bg-red-600 hover:bg-red-700 text-xl rounded-xl p-2 w-52 mb-4 font-semibold hover:scale-110"
+          className="bg-red-600 cursor-pointer hover:bg-red-700 text-xl rounded-xl p-2 w-52 mb-4 font-semibold hover:scale-110"
           type="submit"
           onClick={handleDisconnect}
         >
