@@ -60,7 +60,7 @@ body {
 
 /* Aspect des portes */
 .bg-door {
-  background: url("/porte-garage.png");
+   background: url("../public/porte-garage.png");
   background-size: cover;
   background-position: center;
   box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
