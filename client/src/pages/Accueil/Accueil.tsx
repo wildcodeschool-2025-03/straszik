@@ -132,7 +132,6 @@ function Accueil() {
     fetch(apiGoodiesUrl)
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data);
         setGoodies(data);
       });
   }, []);
