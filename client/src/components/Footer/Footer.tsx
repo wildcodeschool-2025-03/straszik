@@ -9,8 +9,13 @@ function Footer() {
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key === "Enter") {
       e.preventDefault();
-      const email = (e.target as HTMLInputElement).value;
-      if (email) {
+      const email = emailInputRef.current?.value;
+      const regex = /\S+@\S+\.\S+/;
+      if (!regex.test(email ?? "")) {
+        toast.error(
+          "Veuillez entrer une adresse email valide avant de vous inscrire à la newsletter.",
+        );
+      } else if (email) {
         const newsletterEmailList = JSON.parse(
           localStorage.getItem("newsletterEmailList") || "[]",
         );
@@ -47,6 +52,7 @@ function Footer() {
           inputMode="email"
           placeholder="Votre adresse mail"
           onKeyDown={handleKeyDown}
+          required
         />
       </div>
 
