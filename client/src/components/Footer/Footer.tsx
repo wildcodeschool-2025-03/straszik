@@ -1,6 +1,10 @@
+import { useRef } from "react";
 import { Link } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
 
 function Footer() {
+  const emailInputRef = useRef<HTMLInputElement>(null);
+
   // Fonction pour gérer l'inscription à la newsletter et sauvegarder l'email dans le localStorage
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key === "Enter") {
@@ -16,14 +20,17 @@ function Footer() {
             "newsletterEmailList",
             JSON.stringify(newsletterEmailList),
           );
-          alert(
+          toast.success(
             `Votre inscription à notre newsletter a bien été enregistrée avec l'adresse email suivante : ${email}`,
           );
+
           localStorage.setItem("newsletterEmail", email);
+          if (emailInputRef.current) emailInputRef.current.value = "";
         } else {
-          alert(
+          toast.error(
             `Cette adresse email est déjà inscrite à notre newsletter : ${email}`,
           );
+          if (emailInputRef.current) emailInputRef.current.value = "";
         }
       }
     }
@@ -33,14 +40,14 @@ function Footer() {
     <section className="flex flex-col items-center bg-[#4C7B74] gap-3 mt-10">
       <div className="flex flex-col items-center mt-3">
         <h2>S'inscrire à la NewsLetter</h2>
-        <form onKeyDown={handleKeyDown}>
-          <input
-            className="bg-white rounded text-secondary text-center mt-2 w-60 md:w-72 lg:w-80"
-            type="email"
-            inputMode="email"
-            placeholder="Votre adresse mail"
-          />
-        </form>
+        <input
+          ref={emailInputRef}
+          className="bg-white rounded text-secondary text-center mt-2 w-60 md:w-72 lg:w-80"
+          type="email"
+          inputMode="email"
+          placeholder="Votre adresse mail"
+          onKeyDown={handleKeyDown}
+        />
       </div>
 
       <section className="p-2 flex flex-row md:items-center w-full justify-between items-end">
@@ -92,6 +99,17 @@ function Footer() {
           </p>
         </div>
       </section>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </section>
   );
 }

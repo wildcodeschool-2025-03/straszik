@@ -4,7 +4,7 @@ import Header from "../../components/Header/Header";
 
 const setup = [
   {
-    src: "./public/guitare.png",
+    src: "./guitare.png",
     alt: "Guitare de Max",
     label: "Instrument",
     name: "Fender Jazzmaster 66",
@@ -12,7 +12,7 @@ const setup = [
       "Elle grince mais elle groove. Maxime l’a trouvée dans un vide-grenier... depuis, ils ne se quittent plus.",
   },
   {
-    src: "./public/micro.png",
+    src: "./micro.png",
     alt: "Micro d'Alex",
     label: "Accessoire",
     name: "Micro Shure SM58",
@@ -20,7 +20,7 @@ const setup = [
       "Le micro d’Alex a entendu plus de confidences qu’un psy. Heureusement, il ne répète rien.",
   },
   {
-    src: "./public/bass.png",
+    src: "./bass.png",
     alt: "Bass de Quentin",
     label: "Instrument",
     name: "Fender Precision Bass",
@@ -28,7 +28,7 @@ const setup = [
       "Quentin lui parle avant chaque concert. Elle ne répond jamais. Mais ensemble, ils font vibrer les murs.",
   },
   {
-    src: "./public/batterie.png",
+    src: "./batterie.png",
     alt: "Batterie d'Eric",
     label: "Instrument",
     name: "Kit Gretsch + caisse claire custom",

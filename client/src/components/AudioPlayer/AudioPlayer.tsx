@@ -85,17 +85,15 @@ export default function AudioPlayer({
   if (!tracks.length) return null;
 
   return (
-    <div className="p-1 rounded-3xl mt-8 w-full">
+    <div className="px-1 rounded-3xl mt-4 w-full lg:w-10/12 bg-block border-2 border-secondary dark-shadow shadow-[0px_4px_10px_rgba(0,0,0,0.1)] shadow-black">
       {/* Wrapper: mobile column, md row */}
-      <div className="flex flex-col lg:flex-row md:items-center">
+      <div className="flex justify-center items-center p-2">
         {/* Vinyl + Progress in one row always */}
         <div className="flex items-center w-full">
           <img
             src={vinylImg}
             alt="Vinyle"
-            className={`w-30 flex-shrink-0 mr-4 ${
-              playing ? "animate-spin" : ""
-            }`}
+            className={`w-12 sm:w-14 flex-shrink-0 mr-2 ${playing ? "animate-spin" : ""}`}
             style={playing ? { animationDuration: "4s" } : undefined}
           />
           <input
@@ -110,27 +108,27 @@ export default function AudioPlayer({
         </div>
 
         {/* Controls: under on mobile, inline on md+ */}
-        <div className="mt-4 flex justify-center space-x-4 md:mt-2 md:ml-6">
+        <div className="flex items-center justify-center ml-2">
           <button
             type="button"
             onClick={prev}
-            className="p-2 rounded-full bg-secondary hover:bg-secondary/70"
+            className=" hover:text-secondary/70 text-secondary"
           >
-            <ChevronLeftIcon />
+            <ChevronLeftIcon className="w-5 h-5" />
           </button>
           <button
             type="button"
             onClick={togglePlay}
-            className="p-3 bg-secondary hover:bg-secondary/70 rounded-full shadow-md"
+            className="w-8 h-8 p-2 flex items-center justify-center text-white bg-secondary hover:bg-secondary/70 focus:bg-secondary/70 border-2 rounded-full"
           >
             {playing ? <PauseIcon /> : <PlayIcon />}
           </button>
           <button
             type="button"
             onClick={next}
-            className="p-2 rounded-full bg-secondary hover:bg-secondary/70"
+            className="hover:text-secondary/70 text-secondary"
           >
-            <ChevronRightIcon />
+            <ChevronRightIcon className="w-5 h-5" />
           </button>
         </div>
       </div>

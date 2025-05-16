@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import { MdAccountCircle } from "react-icons/md";
+import { PiBasketBold } from "react-icons/pi";
 import { Link } from "react-router";
+import adminAccounts from "../../../public/adminAccounts.json";
 import photogroupe from "../../../public/photogroupe.png";
+import { useBasket } from "../../Context/BasketContext";
 import AlbumHome from "../../components/AlbumHome/AlbumHome";
 import DateHome from "../../components/EventsHome/EventsHome";
 import GoodiesHome from "../../components/GoodiesHome/GoodiesHome";
@@ -23,14 +27,14 @@ const hotspotsData: Hotspot[] = [
   {
     id: "bassiste",
     top: 40,
-    left: 25,
+    left: 18,
     name: "Quentin",
     role: "Bassiste",
     anecdote: "Il joue de la basse depuis l’âge de 10 ans !",
   },
   {
     id: "batteur",
-    top: 50,
+    top: 52,
     left: 40,
     name: "Eric",
     role: "Batteur",
@@ -38,19 +42,19 @@ const hotspotsData: Hotspot[] = [
   },
   {
     id: "chanteur",
-    top: 35,
-    left: 60,
+    top: 38,
+    left: 65,
     name: "Alex",
-    role: "Chanteur",
+    role: "Chanteuse",
     anecdote: "Son premier micro était une brosse à cheveux !",
   },
   {
     id: "guitariste",
-    top: 55,
-    left: 80,
+    top: 43,
+    left: 85,
     name: "Max",
     role: "Guitariste",
-    anecdote: "Il compose ses propres riffs depuis ses 15 ans !",
+    anecdote: "Il crée ses propres riffs depuis ses 15 ans !",
   },
 ];
 
@@ -92,6 +96,12 @@ function setTracks(_arg0: Track[]) {
 }
 
 function Accueil() {
+  const { basket } = useBasket();
+  const productsInBasket = basket.reduce(
+    (acc, product) => acc + product.quantity,
+    0,
+  );
+
   const userConnected = JSON.parse(
     localStorage.getItem("userConnected") || "{}",
   );
@@ -104,7 +114,7 @@ function Accueil() {
   useEffect(() => {
     fetch(apiEventsUrl)
       .then((res) => res.json())
-      .then((data: EventsInterface[]) => setEvents(data.slice(0, 3)));
+      .then((data: EventsInterface[]) => setEvents(data));
   }, []);
 
   useEffect(() => {
@@ -126,26 +136,45 @@ function Accueil() {
 
   return (
     <>
-      <section>
-        <div>
-          {/*login*/}
-          <div className="absolute right-3 min-md:right-1">
+      <section className="p-3 mx-auto">
+        {/*login*/}
+        <div className="absolute right-3 min-md:right-1">
+          {Object.keys(userConnected).length === 0 ? null : (
+            <p className="text-secondary font-semibold lg:text-sm mr-1 min-md:mr-2 text-xs">
+              Bonjour {userConnected.firstName}
+            </p>
+          )}
+          <div className="flex items-center flex-row-reverse">
             <Link
               to={
-                Object.keys(userConnected).length === 0 ? "/log-in" : "/compte"
+                Object.keys(userConnected).length === 0
+                  ? "/log-in"
+                  : adminAccounts.find(
+                        (admin) => admin.email === userConnected.email,
+                      )
+                    ? "/admin"
+                    : "/compte"
               }
-              className="flex flex-col items-end md:items-center md:flex-row"
+              className="flex justify-end md:items-center md:flex-row"
             >
-              {Object.keys(userConnected).length === 0 ? null : (
-                <p className="text-secondary font-semibold lg:text-sm mr-1 min-md:mr-2 text-xs">
-                  Bonjour {userConnected.firstName}
-                </p>
-              )}
-              <img
-                src="./account_circle.png"
-                alt="logo_login"
-                className="w-10 h-10"
-              />
+              <div className="text-black text-4xl p-1 ">
+                <MdAccountCircle />
+              </div>
+            </Link>
+            <Link to="/panier">
+              <div className="text-black text-xl p-1 border-2 rounded-full ">
+                <PiBasketBold />
+                {productsInBasket > 0 && (
+                  <span className="absolute right-10 bg-[#4C7B74] text-white text-xs font-bold rounded-full px-1">
+                    {productsInBasket}
+                  </span>
+                )}
+                {productsInBasket === 0 && (
+                  <span className="absolute right-13 bg-[#4C7B74] text-white text-xs font-bold rounded-full px-1">
+                    0
+                  </span>
+                )}
+              </div>
             </Link>
           </div>
         </div>
@@ -174,7 +203,7 @@ function Accueil() {
       {/* Menu mobile toujours présent */}
 
       <div
-        className={`absolute top-14 left-0 bg-primary/90 text-secondary font-semibold rounded-lg shadow-md p-4 flex flex-col space-y-3 md:hidden transform transition-transform duration-300 ${
+        className={`absolute top-14 left-0 bg-primary/90 text-secondary font-semibold rounded-lg shadow-md p-4 flex flex-col space-y-3 md:hidden transform transition-transform duration-300 z-80 mt-2 ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -226,8 +255,8 @@ function Accueil() {
         </Link>
       </div>
 
-      <div className="flex justify-center ">
-        <section className="flex items-center md:mx-10 mt-20">
+      <div className="flex justify-center mt-5 ">
+        <section className="flex items-center">
           <div className="hidden md:flex flex-col gap-10 text-secondary text-right mr-5">
             <Link
               to="/rockband"
@@ -237,7 +266,7 @@ function Accueil() {
             </Link>
             <Link
               to="/discographie"
-              className="hover:text-white font-extrabold  transition bg-button text-center text-xl p-2 rounded-lg shadow-2xl -translate-x-5 "
+              className="hover:text-white font-extrabold  transition bg-button text-center text-xl p-2 rounded-lg shadow-2xl -translate-x-8 "
             >
               Discographie
             </Link>
@@ -249,7 +278,7 @@ function Accueil() {
             </Link>
           </div>
 
-          <div className="flex mx-4 min-md:mx-0">
+          <div className="flex mx-4 mt-10">
             <PhotoHotspots
               imageSrc={photogroupe}
               alt="Photo du groupe Stras'Zik"
@@ -266,7 +295,7 @@ function Accueil() {
             </Link>
             <Link
               to="/boutique"
-              className="hover:text-white font-extrabold  transition bg-button text-center text-xl p-2 rounded-lg shadow-2xl translate-x-5 w-36"
+              className="hover:text-white font-extrabold  transition bg-button text-center text-xl p-2 rounded-lg shadow-2xl translate-x-8 w-36"
             >
               Boutique
             </Link>
@@ -279,22 +308,19 @@ function Accueil() {
           </div>
         </section>
       </div>
-      <section className="mt-10 mx-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <section className="mt-10 mx-6 grid grid-cols-1 md:grid-cols-2 gap-8 xl:grid-cols-3">
         {/* CARTE ÉVÉNEMENTS */}
-        <div className="bg-button/60 p-6 rounded-3xl shadow-lg flex flex-col justify-between ">
+        <div className="bg-button/60 p-6 rounded-3xl shadow-lg flex flex-col justify-between xl:col-span-1">
           <DateHome events={events} />
         </div>
 
         {/* CARTE DISCOGRAPHIE */}
-        <div className="bg-button/60 p-6 rounded-3xl shadow-lg flex flex-col justify-between ">
+        <div className="bg-button/60 p-6 rounded-3xl shadow-lg flex flex-col justify-between xl:col-span-2">
           <AlbumHome albums={albums} />
         </div>
 
         {/* GOODIES – full-width en tablette, grille en desktop */}
-        <div
-          className="bg-button/60 p-6 rounded-3xl shadow-lg flex flex-col justify-between
-                        md:col-span-2"
-        >
+        <div className="bg-button/60 p-6 rounded-3xl shadow-lg flex flex-col justify-between md:col-span-2 xl:col-span-3">
           <GoodiesHome goodies={goodies} />
         </div>
       </section>
